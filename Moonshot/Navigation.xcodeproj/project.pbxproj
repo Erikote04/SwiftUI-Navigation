@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		BBAD118E2CBE6CB20053268F /* Moonshot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Moonshot.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BBAD118E2CBE6CB20053268F /* Navigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Navigation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -40,7 +40,7 @@
 		BBAD118F2CBE6CB20053268F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				BBAD118E2CBE6CB20053268F /* Moonshot.app */,
+				BBAD118E2CBE6CB20053268F /* Navigation.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -48,9 +48,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		BBAD118D2CBE6CB20053268F /* Moonshot */ = {
+		BBAD118D2CBE6CB20053268F /* Navigation */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BBAD119C2CBE6CB30053268F /* Build configuration list for PBXNativeTarget "Moonshot" */;
+			buildConfigurationList = BBAD119C2CBE6CB30053268F /* Build configuration list for PBXNativeTarget "Navigation" */;
 			buildPhases = (
 				BBAD118A2CBE6CB20053268F /* Sources */,
 				BBAD118B2CBE6CB20053268F /* Frameworks */,
@@ -63,11 +63,11 @@
 			fileSystemSynchronizedGroups = (
 				BBAD11902CBE6CB20053268F /* Moonshot */,
 			);
-			name = Moonshot;
+			name = Navigation;
 			packageProductDependencies = (
 			);
 			productName = Moonshot;
-			productReference = BBAD118E2CBE6CB20053268F /* Moonshot.app */;
+			productReference = BBAD118E2CBE6CB20053268F /* Navigation.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -85,7 +85,7 @@
 					};
 				};
 			};
-			buildConfigurationList = BBAD11892CBE6CB20053268F /* Build configuration list for PBXProject "Moonshot" */;
+			buildConfigurationList = BBAD11892CBE6CB20053268F /* Build configuration list for PBXProject "Navigation" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -99,7 +99,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				BBAD118D2CBE6CB20053268F /* Moonshot */,
+				BBAD118D2CBE6CB20053268F /* Navigation */,
 			);
 		};
 /* End PBXProject section */
@@ -305,7 +305,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		BBAD11892CBE6CB20053268F /* Build configuration list for PBXProject "Moonshot" */ = {
+		BBAD11892CBE6CB20053268F /* Build configuration list for PBXProject "Navigation" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BBAD119A2CBE6CB30053268F /* Debug */,
@@ -314,7 +314,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		BBAD119C2CBE6CB30053268F /* Build configuration list for PBXNativeTarget "Moonshot" */ = {
+		BBAD119C2CBE6CB30053268F /* Build configuration list for PBXNativeTarget "Navigation" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BBAD119D2CBE6CB30053268F /* Debug */,
