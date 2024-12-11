@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct ChildView: View {
-    @Binding var path: [Int]
+    @Binding var path: NavigationPath
+    // @Binding var path: [Int]
     // @Binding var path: NavigationPath
     
     let number: Int
@@ -18,7 +19,8 @@ struct ChildView: View {
             .navigationTitle("Number \(number)")
             .toolbar {
                 Button("Home") {
-                    path.removeAll()
+                    path = NavigationPath()
+                    // path.removeAll()
                     // path = NavigationPath()
                 }
             }
