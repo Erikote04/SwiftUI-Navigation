@@ -17,9 +17,9 @@ struct MissionMainView: View {
         NavigationStack {
             Group {
                 if isShowingGrid {
-                    MissionGridView(astronauts: astronauts, missions: missions)
+                    MissionGridView(missions: missions)
                 } else {
-                    MissionListView(astronauts: astronauts, missions: missions)
+                    MissionListView(missions: missions)
                 }
             }
             .navigationTitle("Moonshot")

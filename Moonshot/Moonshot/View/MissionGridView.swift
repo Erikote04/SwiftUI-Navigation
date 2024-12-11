@@ -1,7 +1,6 @@
 import SwiftUI
 
 struct MissionGridView: View {
-    let astronauts: [String: Astronaut]
     let missions: [Mission]
     
     let columns = [
@@ -23,8 +22,6 @@ struct MissionGridView: View {
 }
 
 #Preview {
-    let astronauts: [String: Astronaut] = Bundle.main.decode("astronauts.json")
     let missions: [Mission] = Bundle.main.decode("missions.json")
-    
-    MissionGridView(astronauts: astronauts, missions: missions)
+    MissionGridView(missions: missions)
 }
