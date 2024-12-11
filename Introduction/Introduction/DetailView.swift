@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct NavigationLinkDetailView: View {
+struct DetailView: View {
     let number: Int
     
     var body: some View {

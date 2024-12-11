@@ -12,7 +12,7 @@ struct NavigationLinkView: View {
         NavigationStack {
             List(0..<1000) { number in
                 NavigationLink("Row \(number)") {
-                    NavigationLinkDetailView(number: number)
+                    DetailView(number: number)
                 }
             }
         }
