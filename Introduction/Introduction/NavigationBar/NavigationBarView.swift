@@ -17,6 +17,11 @@ struct NavigationBarView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbarBackground(.blue)
             .toolbarColorScheme(.dark)
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Button("Tap me") { }
+                }
+            }
         }
     }
 }
