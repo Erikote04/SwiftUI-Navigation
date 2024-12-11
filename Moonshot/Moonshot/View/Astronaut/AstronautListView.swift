@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct AstronautListView: View {
-    let astronauts: [String: Astronaut]
+    @Binding var selectedTab: Int
+    let astronauts: [String: Astronaut] = Bundle.main.decode("astronauts.json")
     
     private var sortedAstronautsByName: [Astronaut] {
         astronauts.values.sorted { $0.name < $1.name }
@@ -37,6 +38,5 @@ struct AstronautListView: View {
 }
 
 #Preview {
-    let astronauts: [String: Astronaut] = Bundle.main.decode("astronauts.json")
-    AstronautListView(astronauts: astronauts)
+    AstronautListView(selectedTab: .constant(2))
 }

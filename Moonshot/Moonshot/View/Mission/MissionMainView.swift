@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MissionMainView: View {
+    @Binding var selectedTab: Int
     @State private var isShowingGrid: Bool = true
     
     let astronauts: [String: Astronaut] = Bundle.main.decode("astronauts.json")
@@ -39,5 +40,5 @@ struct MissionMainView: View {
 }
 
 #Preview {
-    MissionMainView()
+    MissionMainView(selectedTab: .constant(1))
 }
