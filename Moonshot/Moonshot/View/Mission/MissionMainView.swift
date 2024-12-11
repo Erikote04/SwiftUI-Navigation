@@ -25,7 +25,7 @@ struct MissionMainView: View {
             }
             .navigationTitle("Moonshot")
             .navigationDestination(for: Mission.self) { mission in
-                MissionView(mission: mission, astronauts: astronauts)
+                MissionView(selectedTab: $selectedTab, mission: mission, astronauts: astronauts)
             }
             .background(.darkBackground)
             .preferredColorScheme(.dark)

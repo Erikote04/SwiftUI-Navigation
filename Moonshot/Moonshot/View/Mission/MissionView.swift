@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct MissionView: View {
+    @Binding var selectedTab: Int
+    
     let mission: Mission
     let crew: [CrewMember]
     
@@ -43,9 +45,20 @@ struct MissionView: View {
                         .foregroundStyle(.lightBackground)
                         .padding(.vertical)
                     
-                    Text("Crew")
-                        .font(.title.bold())
-                        .padding(.bottom, 4)
+                    Button {
+                        selectedTab = 2
+                    } label: {
+                        HStack {
+                            Text("Astronauts")
+                                .font(.title.bold())
+                                .foregroundStyle(.white)
+                                .padding(.bottom, 4)
+                            
+                            Image(systemName: "chevron.right")
+                                .font(.title2.bold())
+                                .foregroundStyle(.lightBackground)
+                        }
+                    }
                 }
                 .padding(.horizontal)
                 
@@ -68,7 +81,8 @@ struct MissionView: View {
         .background(.darkBackground)
     }
     
-    init(mission: Mission, astronauts: [String: Astronaut]) {
+    init(selectedTab: Binding<Int>, mission: Mission, astronauts: [String: Astronaut]) {
+        self._selectedTab = selectedTab
         self.mission = mission
         
         self.crew = mission.crew.map { member in
@@ -85,6 +99,6 @@ struct MissionView: View {
     let missions: [Mission] = Bundle.main.decode("missions.json")
     let astronauts: [String: Astronaut] = Bundle.main.decode("astronauts.json")
     
-    MissionView(mission: missions[0], astronauts: astronauts)
+    MissionView(selectedTab: .constant(1), mission: missions[0], astronauts: astronauts)
         .preferredColorScheme(.dark)
 }

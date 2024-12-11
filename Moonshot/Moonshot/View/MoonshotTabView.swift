@@ -12,19 +12,17 @@ struct MoonshotTabView: View {
     
     var body: some View {
         TabView(selection: $selectedTab) {
-            Tab(value: selectedTab) {
-                MissionMainView(selectedTab: $selectedTab)
-                    .tag(1)
-            } label: {
-                Label("Missions", systemImage: "flag.pattern.checkered.circle")
-            }
+            MissionMainView(selectedTab: $selectedTab)
+                .tag(1)
+                .tabItem {
+                    Label("Missions", systemImage: "flag.pattern.checkered.circle")
+                }
             
-            Tab(value: selectedTab) {
-                AstronautListView(selectedTab: $selectedTab)
-                    .tag(2)
-            } label: {
-                Label("Astronauts", systemImage: "person.circle.fill")
-            }
+            AstronautListView()
+                .tag(2)
+                .tabItem {
+                    Label("Astronauts", systemImage: "person.circle.fill")
+                }
         }
         .tint(.white)
     }
