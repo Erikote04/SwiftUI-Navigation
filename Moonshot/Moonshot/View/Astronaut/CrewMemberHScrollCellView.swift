@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AstronautCellView: View {
+struct CrewMemberHScrollCellView: View {
     let crewMember: CrewMember
     
     var body: some View {

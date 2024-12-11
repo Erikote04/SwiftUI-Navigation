@@ -55,7 +55,7 @@ struct MissionView: View {
                             NavigationLink {
                                 AstronautView(astronaut: crewMember.astronaut)
                             } label: {
-                                AstronautCellView(crewMember: crewMember)
+                                CrewMemberHScrollCellView(crewMember: crewMember)
                             }
                         }
                     }
