@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct CrewMember {
+struct CrewMember: Hashable, Identifiable {
+    let id: UUID = UUID()
     let role: String
     let astronaut: Astronaut
 }
