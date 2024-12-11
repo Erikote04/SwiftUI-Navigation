@@ -31,10 +31,10 @@ struct MissionMainView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("", systemImage: isShowingGrid ? "square.grid.2x2" : "list.bullet") { isShowingGrid.toggle() }
-                        .tint(.white)
                 }
             }
         }
+        .tint(.white)
     }
 }
 
