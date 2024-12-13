@@ -23,6 +23,12 @@ struct MoonshotTabView: View {
                 .tabItem {
                     Label("Astronauts", systemImage: "person.circle.fill")
                 }
+            
+            FirstChallengeRootView()
+                .tag(3)
+                .tabItem {
+                    Label("Challenge", systemImage: "1.circle.fill")
+                }
         }
         .tint(.white)
     }
