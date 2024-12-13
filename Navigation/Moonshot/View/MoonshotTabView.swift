@@ -8,30 +8,30 @@
 import SwiftUI
 
 struct MoonshotTabView: View {
-    @State private var selectedTab: Int = 1
+    @State private var selectedTab: Tab = .missions
     
     var body: some View {
         TabView(selection: $selectedTab) {
             MissionMainView(selectedTab: $selectedTab)
-                .tag(1)
+                .tag(Tab.missions)
                 .tabItem {
                     Label("Missions", systemImage: "flag.pattern.checkered.circle")
                 }
             
             AstronautListView()
-                .tag(2)
+                .tag(Tab.astronauts)
                 .tabItem {
                     Label("Astronauts", systemImage: "person.circle.fill")
                 }
             
             FirstChallengeRootView()
-                .tag(3)
+                .tag(Tab.firstChallenge)
                 .tabItem {
                     Label("Challenge", systemImage: "1.circle.fill")
                 }
             
             SecondChallengeRootView()
-                .tag(4)
+                .tag(Tab.secondChallenge)
                 .tabItem {
                     Label("Challenge", systemImage: "2.circle.fill")
                 }

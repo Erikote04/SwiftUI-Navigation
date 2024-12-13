@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MissionView: View {
-    @Binding var selectedTab: Int
+    @Binding var selectedTab: Tab
     
     let mission: Mission
     let crew: [CrewMember]
@@ -46,7 +46,7 @@ struct MissionView: View {
                         .padding(.vertical)
                     
                     Button {
-                        selectedTab = 2
+                        selectedTab = .astronauts
                     } label: {
                         HStack {
                             Text("Astronauts")
@@ -81,7 +81,7 @@ struct MissionView: View {
         .background(.darkBackground)
     }
     
-    init(selectedTab: Binding<Int>, mission: Mission, astronauts: [String: Astronaut]) {
+    init(selectedTab: Binding<Tab>, mission: Mission, astronauts: [String: Astronaut]) {
         self._selectedTab = selectedTab
         self.mission = mission
         
@@ -99,6 +99,6 @@ struct MissionView: View {
     let missions: [Mission] = Bundle.main.decode("missions.json")
     let astronauts: [String: Astronaut] = Bundle.main.decode("astronauts.json")
     
-    MissionView(selectedTab: .constant(1), mission: missions[0], astronauts: astronauts)
+    MissionView(selectedTab: .constant(Tab.missions), mission: missions[0], astronauts: astronauts)
         .preferredColorScheme(.dark)
 }
