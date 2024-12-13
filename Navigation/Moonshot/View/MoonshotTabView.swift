@@ -29,6 +29,12 @@ struct MoonshotTabView: View {
                 .tabItem {
                     Label("Challenge", systemImage: "1.circle.fill")
                 }
+            
+            SecondChallengeRootView()
+                .tag(4)
+                .tabItem {
+                    Label("Challenge", systemImage: "2.circle.fill")
+                }
         }
         .tint(.white)
     }
