@@ -8,16 +8,12 @@
 import SwiftUI
 
 struct AstronautListView: View {
-    let astronauts: [String: Astronaut] = Bundle.main.decode("astronauts.json")
-    
-    private var sortedAstronautsByName: [Astronaut] {
-        astronauts.values.sorted { $0.name < $1.name }
-    }
+    @StateObject private var viewModel: AstronautViewModel = AstronautViewModel()
     
     var body: some View {
         NavigationStack {
             List {
-                ForEach(sortedAstronautsByName) { astronaut in
+                ForEach(viewModel.sortedAstronautsByName) { astronaut in
                     NavigationLink(value: astronaut) {
                         AstronautListRowView(astronaut: astronaut)
                     }
@@ -33,6 +29,9 @@ struct AstronautListView: View {
             .preferredColorScheme(.dark)
         }
         .tint(.white)
+        .onAppear {
+            viewModel.viewAppear()
+        }
     }
 }
 
