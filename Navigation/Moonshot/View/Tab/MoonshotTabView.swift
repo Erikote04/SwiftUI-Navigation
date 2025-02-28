@@ -2,10 +2,10 @@ import SwiftUI
 
 struct MoonshotTabView: View {
     @StateObject private var coordinator = Coordinator()
-    @State private var selectedTab: Tab = .missions
+    @StateObject private var tabViewModel = TabViewModel()
     
     var body: some View {
-        TabView(selection: $selectedTab) {
+        TabView(selection: $tabViewModel.selectedTab) {
             NavigationStack(path: $coordinator.path) {
                 coordinator.build(.missions)
                     .navigationDestination(for: AppView.self) { view in
@@ -29,6 +29,7 @@ struct MoonshotTabView: View {
             }
         }
         .tint(.white)
+        .environmentObject(tabViewModel)
     }
 }
 

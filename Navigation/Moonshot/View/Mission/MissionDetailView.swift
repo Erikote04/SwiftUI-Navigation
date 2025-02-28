@@ -65,19 +65,15 @@ private struct MissionDetails: View {
                 .foregroundStyle(.lightBackground)
                 .padding(.vertical)
             
-            Button {
-//                        selectedTab = .astronauts
-            } label: {
-                HStack {
-                    Text("Astronauts")
-                        .font(.title.bold())
-                        .foregroundStyle(.white)
-                        .padding(.bottom, 4)
-                    
-                    Image(systemName: "chevron.right")
-                        .font(.title2.bold())
-                        .foregroundStyle(.lightBackground)
-                }
+            HStack {
+                Text("Astronauts")
+                    .font(.title.bold())
+                    .foregroundStyle(.white)
+                    .padding(.bottom, 4)
+                
+                Image(systemName: "chevron.right")
+                    .font(.title2.bold())
+                    .foregroundStyle(.lightBackground)
             }
         }
         .padding(.horizontal)
