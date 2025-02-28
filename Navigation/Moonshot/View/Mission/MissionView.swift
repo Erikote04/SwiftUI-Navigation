@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct MissionView: View {
+    @ObservedObject var viewModel: MissionViewModel
     @Binding var selectedTab: Tab
     
     let mission: Mission
-    let crew: [CrewMember]
     
     var body: some View {
         ScrollView {
@@ -64,7 +64,7 @@ struct MissionView: View {
                 
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
-                        ForEach(crew, id: \.role) { crewMember in
+                        ForEach(viewModel.crew, id: \.role) { crewMember in
                             NavigationLink {
                                 AstronautView(astronaut: crewMember.astronaut)
                             } label: {
@@ -79,18 +79,8 @@ struct MissionView: View {
         .navigationTitle(mission.displayName)
         .navigationBarTitleDisplayMode(.inline)
         .background(.darkBackground)
-    }
-    
-    init(selectedTab: Binding<Tab>, mission: Mission, astronauts: [String: Astronaut]) {
-        self._selectedTab = selectedTab
-        self.mission = mission
-        
-        self.crew = mission.crew.map { member in
-            if let astronaut = astronauts[member.name] {
-                return CrewMember(role: member.role, astronaut: astronaut)
-            } else {
-                fatalError("Missing \(member.name)")
-            }
+        .onAppear {
+            viewModel.getCrew(mission: mission, astronauts: viewModel.astronauts)
         }
     }
 }
@@ -99,6 +89,6 @@ struct MissionView: View {
     let missions: [Mission] = Bundle.main.decode("missions.json")
     let astronauts: [String: Astronaut] = Bundle.main.decode("astronauts.json")
     
-    MissionView(selectedTab: .constant(Tab.missions), mission: missions[0], astronauts: astronauts)
+    MissionView(viewModel: MissionViewModel(), selectedTab: .constant(Tab.missions), mission: missions[0])
         .preferredColorScheme(.dark)
 }

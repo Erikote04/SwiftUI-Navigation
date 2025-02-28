@@ -8,7 +8,7 @@
 import Foundation
 
 protocol AstronautViewModelProtocol {
-    func getAstronauts() -> Void
+    func getAstronauts()
 }
 
 final class AstronautViewModel: ObservableObject, AstronautViewModelProtocol {

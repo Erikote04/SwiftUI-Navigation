@@ -8,34 +8,34 @@
 import SwiftUI
 
 struct MissionMainView: View {
+    @StateObject private var viewModel: MissionViewModel = MissionViewModel()
     @Binding var selectedTab: Tab
-    @State private var isShowingGrid: Bool = true
-    
-    let astronauts: [String: Astronaut] = Bundle.main.decode("astronauts.json")
-    let missions: [Mission] = Bundle.main.decode("missions.json")
     
     var body: some View {
         NavigationStack {
             Group {
-                if isShowingGrid {
-                    MissionGridView(missions: missions)
+                if viewModel.isShowingGrid {
+                    MissionGridView(missions: viewModel.missions)
                 } else {
-                    MissionListView(missions: missions)
+                    MissionListView(missions: viewModel.missions)
                 }
             }
             .navigationTitle("Moonshot")
             .navigationDestination(for: Mission.self) { mission in
-                MissionView(selectedTab: $selectedTab, mission: mission, astronauts: astronauts)
+                MissionView(viewModel: viewModel, selectedTab: $selectedTab, mission: mission)
             }
             .background(.darkBackground)
             .preferredColorScheme(.dark)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button("", systemImage: isShowingGrid ? "square.grid.2x2" : "list.bullet") { isShowingGrid.toggle() }
+                    Button("", systemImage: viewModel.isShowingGrid ? "square.grid.2x2" : "list.bullet") { viewModel.isShowingGrid.toggle() }
                 }
             }
         }
         .tint(.white)
+        .onAppear {
+            viewModel.onAppear()
+        }
     }
 }
 
