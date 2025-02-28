@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct MissionsListView: View {
+    @ObservedObject var coordinator: Coordinator
     let missions: [Mission]
     
     var body: some View {
         List {
             ForEach(missions) { mission in
-                NavigationLink(value: mission) {
-                    MissionListRowView(mission: mission)
-                }
+                Button { coordinator.push(.missionDetail(mission: mission)) }
+                label: { MissionListRowView(mission: mission) }
             }
             .listRowBackground(Color.darkBackground)
         }
@@ -25,5 +25,5 @@ struct MissionsListView: View {
 
 #Preview {
     let missions: [Mission] = Bundle.main.decode("missions.json")
-    MissionsListView(missions: missions)
+    MissionsListView(coordinator: Coordinator(), missions: missions)
 }

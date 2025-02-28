@@ -8,33 +8,28 @@
 import SwiftUI
 
 struct AstronautsListView: View {
-    @StateObject private var viewModel: AstronautViewModel = AstronautViewModel()
+    @ObservedObject var coordinator: Coordinator
+    @ObservedObject var viewModel: AstronautViewModel
     
     var body: some View {
-        NavigationStack {
-            List {
-                ForEach(viewModel.sortedAstronautsByName) { astronaut in
-                    NavigationLink(value: astronaut) {
-                        AstronautListRowView(astronaut: astronaut)
-                    }
-                }
-                .listRowBackground(Color.darkBackground)
+        List {
+            ForEach(viewModel.sortedAstronautsByName) { astronaut in
+                Button { coordinator.push(.astronautDetail(astronaut: astronaut)) }
+                label: { AstronautListRowView(astronaut: astronaut) }
             }
-            .listStyle(.plain)
-            .navigationTitle("Astronauts")
-            .navigationDestination(for: Astronaut.self) { astronaut in
-                AstronautDetailView(astronaut: astronaut)
-            }
-            .background(.darkBackground)
-            .preferredColorScheme(.dark)
+            .listRowBackground(Color.darkBackground)
         }
-        .tint(.white)
+        .listStyle(.plain)
+        .navigationTitle("Astronauts")
+        .background(.darkBackground)
+        .preferredColorScheme(.dark)
         .onAppear {
             viewModel.viewAppear()
         }
+        
     }
 }
 
 #Preview {
-    AstronautsListView()
+    AstronautsListView(coordinator: Coordinator(), viewModel: AstronautViewModel())
 }

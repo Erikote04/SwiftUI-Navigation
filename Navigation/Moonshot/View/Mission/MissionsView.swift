@@ -8,31 +8,24 @@
 import SwiftUI
 
 struct MissionsView: View {
-    @StateObject private var viewModel: MissionViewModel = MissionViewModel()
-    @Binding var selectedTab: Tab
+    @ObservedObject var coordinator: Coordinator
+    @ObservedObject var viewModel: MissionViewModel
     
     var body: some View {
-        NavigationStack {
-            Group {
-                if viewModel.isShowingGrid {
-                    MissionsGridView(missions: viewModel.missions)
-                } else {
-                    MissionsListView(missions: viewModel.missions)
-                }
-            }
-            .navigationTitle("Moonshot")
-            .navigationDestination(for: Mission.self) { mission in
-                MissionDetailView(viewModel: viewModel, selectedTab: $selectedTab, mission: mission)
-            }
-            .background(.darkBackground)
-            .preferredColorScheme(.dark)
-            .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button("", systemImage: viewModel.isShowingGrid ? "square.grid.2x2" : "list.bullet") { viewModel.isShowingGrid.toggle() }
+        Group {
+            if viewModel.isShowingGrid { MissionsGridView(coordinator: coordinator, missions: viewModel.missions) }
+            else { MissionsListView(coordinator: coordinator, missions: viewModel.missions) }
+        }
+        .navigationTitle("Moonshot")
+        .background(.darkBackground)
+        .preferredColorScheme(.dark)
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button("", systemImage: viewModel.isShowingGrid ? "square.grid.2x2" : "list.bullet") {
+                    viewModel.isShowingGrid.toggle()
                 }
             }
         }
-        .tint(.white)
         .onAppear {
             viewModel.onAppear()
         }
@@ -40,5 +33,5 @@ struct MissionsView: View {
 }
 
 #Preview {
-    MissionsView(selectedTab: .constant(Tab.missions))
+    MissionsView(coordinator: Coordinator(), viewModel: MissionViewModel())
 }
