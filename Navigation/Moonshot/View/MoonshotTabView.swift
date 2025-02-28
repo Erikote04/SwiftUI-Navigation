@@ -14,9 +14,9 @@ struct MoonshotTabView: View {
     var body: some View {
         TabView(selection: $selectedTab) {
             NavigationStack(path: $coordinator.path) {
-                coordinator.build(view: .missions)
+                coordinator.build(.missions)
                     .navigationDestination(for: AppView.self) { view in
-                        coordinator.build(view: view)
+                        coordinator.build(view)
                     }
             }
             .tag(Tab.missions)
@@ -25,27 +25,15 @@ struct MoonshotTabView: View {
             }
             
             NavigationStack(path: $coordinator.path) {
-                coordinator.build(view: .astronauts)
+                coordinator.build(.astronauts)
                     .navigationDestination(for: AppView.self) { view in
-                        coordinator.build(view: view)
+                        coordinator.build(view)
                     }
             }
             .tag(Tab.astronauts)
             .tabItem {
                 Label("Astronauts", systemImage: "person.circle.fill")
             }
-            
-            //            FirstChallengeRootView()
-            //                .tag(Tab.firstChallenge)
-            //                .tabItem {
-            //                    Label("Challenge", systemImage: "1.circle.fill")
-            //                }
-            //
-            //            SecondChallengeRootView()
-            //                .tag(Tab.secondChallenge)
-            //                .tabItem {
-            //                    Label("Challenge", systemImage: "2.circle.fill")
-            //                }
         }
         .tint(.white)
     }

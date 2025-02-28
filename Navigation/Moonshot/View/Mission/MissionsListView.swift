@@ -14,7 +14,7 @@ struct MissionsListView: View {
     var body: some View {
         List {
             ForEach(missions) { mission in
-                Button { coordinator.push(.missionDetail(mission: mission)) }
+                Button { coordinator.push(.missionDetail(mission)) }
                 label: { MissionListRowView(mission: mission) }
             }
             .listRowBackground(Color.darkBackground)

@@ -14,7 +14,7 @@ struct AstronautsListView: View {
     var body: some View {
         List {
             ForEach(viewModel.sortedAstronautsByName) { astronaut in
-                Button { coordinator.push(.astronautDetail(astronaut: astronaut)) }
+                Button { coordinator.push(.astronautDetail(astronaut)) }
                 label: { AstronautListRowView(astronaut: astronaut) }
             }
             .listRowBackground(Color.darkBackground)

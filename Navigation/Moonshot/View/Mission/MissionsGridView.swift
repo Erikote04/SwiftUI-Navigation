@@ -12,7 +12,7 @@ struct MissionsGridView: View {
         ScrollView {
             LazyVGrid(columns: columns) {
                 ForEach(missions) { mission in
-                    Button { coordinator.push(.missionDetail(mission: mission)) }
+                    Button { coordinator.push(.missionDetail(mission)) }
                     label: { MissionGridCellView(mission: mission) }
                 }
             }
