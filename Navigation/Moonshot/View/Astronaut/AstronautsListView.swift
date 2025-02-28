@@ -18,8 +18,7 @@ struct AstronautsListView: View {
         .preferredColorScheme(.dark)
         .onAppear {
             viewModel.viewAppear()
-        }
-        
+        }        
     }
 }
 
