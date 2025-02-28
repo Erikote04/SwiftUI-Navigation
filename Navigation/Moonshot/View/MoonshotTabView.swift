@@ -12,13 +12,13 @@ struct MoonshotTabView: View {
     
     var body: some View {
         TabView(selection: $selectedTab) {
-            MissionMainView(selectedTab: $selectedTab)
+            MissionsView(selectedTab: $selectedTab)
                 .tag(Tab.missions)
                 .tabItem {
                     Label("Missions", systemImage: "flag.pattern.checkered.circle")
                 }
             
-            AstronautListView()
+            AstronautsListView()
                 .tag(Tab.astronauts)
                 .tabItem {
                     Label("Astronauts", systemImage: "person.circle.fill")

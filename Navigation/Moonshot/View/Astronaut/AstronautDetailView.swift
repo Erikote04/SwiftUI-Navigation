@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AstronautView: View {
+struct AstronautDetailView: View {
     let astronaut: Astronaut
     
     var body: some View {
@@ -30,6 +30,6 @@ struct AstronautView: View {
 #Preview {
     let astronauts: [String: Astronaut] = Bundle.main.decode("astronauts.json")
     
-    AstronautView(astronaut: astronauts["aldrin"]!)
+    AstronautDetailView(astronaut: astronauts["aldrin"]!)
         .preferredColorScheme(.dark)
 }

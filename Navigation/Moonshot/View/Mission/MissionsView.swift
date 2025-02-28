@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MissionMainView: View {
+struct MissionsView: View {
     @StateObject private var viewModel: MissionViewModel = MissionViewModel()
     @Binding var selectedTab: Tab
     
@@ -15,14 +15,14 @@ struct MissionMainView: View {
         NavigationStack {
             Group {
                 if viewModel.isShowingGrid {
-                    MissionGridView(missions: viewModel.missions)
+                    MissionsGridView(missions: viewModel.missions)
                 } else {
-                    MissionListView(missions: viewModel.missions)
+                    MissionsListView(missions: viewModel.missions)
                 }
             }
             .navigationTitle("Moonshot")
             .navigationDestination(for: Mission.self) { mission in
-                MissionView(viewModel: viewModel, selectedTab: $selectedTab, mission: mission)
+                MissionDetailView(viewModel: viewModel, selectedTab: $selectedTab, mission: mission)
             }
             .background(.darkBackground)
             .preferredColorScheme(.dark)
@@ -40,5 +40,5 @@ struct MissionMainView: View {
 }
 
 #Preview {
-    MissionMainView(selectedTab: .constant(Tab.missions))
+    MissionsView(selectedTab: .constant(Tab.missions))
 }

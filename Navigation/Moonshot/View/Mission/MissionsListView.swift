@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MissionListView: View {
+struct MissionsListView: View {
     let missions: [Mission]
     
     var body: some View {
@@ -25,5 +25,5 @@ struct MissionListView: View {
 
 #Preview {
     let missions: [Mission] = Bundle.main.decode("missions.json")
-    MissionListView(missions: missions)
+    MissionsListView(missions: missions)
 }

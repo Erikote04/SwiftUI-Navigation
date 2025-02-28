@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AstronautListView: View {
+struct AstronautsListView: View {
     @StateObject private var viewModel: AstronautViewModel = AstronautViewModel()
     
     var body: some View {
@@ -23,7 +23,7 @@ struct AstronautListView: View {
             .listStyle(.plain)
             .navigationTitle("Astronauts")
             .navigationDestination(for: Astronaut.self) { astronaut in
-                AstronautView(astronaut: astronaut)
+                AstronautDetailView(astronaut: astronaut)
             }
             .background(.darkBackground)
             .preferredColorScheme(.dark)
@@ -36,5 +36,5 @@ struct AstronautListView: View {
 }
 
 #Preview {
-    AstronautListView()
+    AstronautsListView()
 }

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MissionView: View {
+struct MissionDetailView: View {
     @ObservedObject var viewModel: MissionViewModel
     @Binding var selectedTab: Tab
     
@@ -66,7 +66,7 @@ struct MissionView: View {
                     HStack {
                         ForEach(viewModel.crew, id: \.role) { crewMember in
                             NavigationLink {
-                                AstronautView(astronaut: crewMember.astronaut)
+                                AstronautDetailView(astronaut: crewMember.astronaut)
                             } label: {
                                 CrewMemberHScrollCellView(crewMember: crewMember)
                             }
@@ -89,6 +89,6 @@ struct MissionView: View {
     let missions: [Mission] = Bundle.main.decode("missions.json")
     let astronauts: [String: Astronaut] = Bundle.main.decode("astronauts.json")
     
-    MissionView(viewModel: MissionViewModel(), selectedTab: .constant(Tab.missions), mission: missions[0])
+    MissionDetailView(viewModel: MissionViewModel(), selectedTab: .constant(Tab.missions), mission: missions[0])
         .preferredColorScheme(.dark)
 }
