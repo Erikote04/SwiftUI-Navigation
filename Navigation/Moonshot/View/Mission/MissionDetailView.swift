@@ -1,10 +1,3 @@
-//
-//  MissionView.swift
-//  Moonshot
-//
-//  Created by Erik Sebastian de Erice Jerez on 18/10/24.
-//
-
 import SwiftUI
 
 struct MissionDetailView: View {
@@ -15,51 +8,7 @@ struct MissionDetailView: View {
     var body: some View {
         ScrollView {
             VStack {
-                Image(mission.image)
-                    .resizable()
-                    .scaledToFit()
-                    .containerRelativeFrame(.horizontal) { width, axis in
-                        width * 0.6
-                    }
-                
-                Text(mission.formattedLaunchDate)
-                    .font(.subheadline)
-                    .foregroundStyle(.gray)
-                    .padding(.top, 8)
-                
-                VStack(alignment: .leading) {
-                    Rectangle()
-                        .frame(height: 2)
-                        .foregroundStyle(.lightBackground)
-                        .padding(.vertical)
-                    
-                    Text("Mission Highlights")
-                        .font(.title.bold())
-                        .padding(.bottom, 4)
-                    
-                    Text(mission.description)
-                    
-                    Rectangle()
-                        .frame(height: 2)
-                        .foregroundStyle(.lightBackground)
-                        .padding(.vertical)
-                    
-                    Button {
-//                        selectedTab = .astronauts
-                    } label: {
-                        HStack {
-                            Text("Astronauts")
-                                .font(.title.bold())
-                                .foregroundStyle(.white)
-                                .padding(.bottom, 4)
-                            
-                            Image(systemName: "chevron.right")
-                                .font(.title2.bold())
-                                .foregroundStyle(.lightBackground)
-                        }
-                    }
-                }
-                .padding(.horizontal)
+                MissionDetails(mission: mission)
                 
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
@@ -82,6 +31,58 @@ struct MissionDetailView: View {
             viewModel.onAppear()
             viewModel.getCrew(mission: mission, astronauts: viewModel.astronauts)
         }
+    }
+}
+
+private struct MissionDetails: View {
+    let mission: Mission
+    
+    var body: some View {
+        Image(mission.image)
+            .resizable()
+            .scaledToFit()
+            .containerRelativeFrame(.horizontal) { width, axis in
+                width * 0.6
+            }
+        
+        Text(mission.formattedLaunchDate)
+            .font(.subheadline)
+            .foregroundStyle(.gray)
+            .padding(.top, 8)
+        
+        VStack(alignment: .leading) {
+            Rectangle()
+                .frame(height: 2)
+                .foregroundStyle(.lightBackground)
+                .padding(.vertical)
+            
+            Text("Mission Highlights")
+                .font(.title.bold())
+                .padding(.bottom, 4)
+            
+            Text(mission.description)
+            
+            Rectangle()
+                .frame(height: 2)
+                .foregroundStyle(.lightBackground)
+                .padding(.vertical)
+            
+            Button {
+//                        selectedTab = .astronauts
+            } label: {
+                HStack {
+                    Text("Astronauts")
+                        .font(.title.bold())
+                        .foregroundStyle(.white)
+                        .padding(.bottom, 4)
+                    
+                    Image(systemName: "chevron.right")
+                        .font(.title2.bold())
+                        .foregroundStyle(.lightBackground)
+                }
+            }
+        }
+        .padding(.horizontal)
     }
 }
 

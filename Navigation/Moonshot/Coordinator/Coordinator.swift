@@ -1,10 +1,3 @@
-//
-//  Coordinator.swift
-//  Navigation
-//
-//  Created by Erik Sebastian de Erice Jerez on 28/2/25.
-//
-
 import SwiftUI
 
 protocol CoordinatorProtocol {
@@ -83,18 +76,4 @@ final class Coordinator: CoordinatorProtocol, ObservableObject {
         case .astronautDetail(let astronaut): AstronautDetailView(astronaut: astronaut)
         }
     }
-    
-//    @ViewBuilder
-//    func build(_ sheet: Sheet) -> some View {
-//        switch sheet {
-//        case .imageDetail(let image): ImageDetailView(image: image)
-//        }
-//    }
-//    
-//    @ViewBuilder
-//    func build(_ fullScreenCover: FullScreenCover) -> some View {
-//        switch fullScreenCover {
-//        case .missionDetail(let mission): FullScreenCoverView(coordinator: self, viewModel: missionViewModel, mission: mission)
-//        }
-//    }
 }

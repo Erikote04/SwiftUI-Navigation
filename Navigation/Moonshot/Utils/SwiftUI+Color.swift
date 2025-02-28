@@ -1,10 +1,3 @@
-//
-//  SwiftUI+Color.swift
-//  Moonshot
-//
-//  Created by Erik Sebastian de Erice Jerez on 18/10/24.
-//
-
 import SwiftUI
 
 extension ShapeStyle where Self == Color {

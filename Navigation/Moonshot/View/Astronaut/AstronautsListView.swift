@@ -1,10 +1,3 @@
-//
-//  AstronautListView.swift
-//  Navigation
-//
-//  Created by Erik Sebastian de Erice Jerez on 11/12/24.
-//
-
 import SwiftUI
 
 struct AstronautsListView: View {

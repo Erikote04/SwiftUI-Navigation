@@ -1,10 +1,3 @@
-//
-//  AstronautView.swift
-//  Moonshot
-//
-//  Created by Erik Sebastian de Erice Jerez on 18/10/24.
-//
-
 import SwiftUI
 
 struct AstronautDetailView: View {

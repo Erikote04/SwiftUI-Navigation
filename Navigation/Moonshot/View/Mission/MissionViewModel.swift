@@ -1,10 +1,3 @@
-//
-//  MissionViewModel.swift
-//  Navigation
-//
-//  Created by Erik Sebastian de Erice Jerez on 28/2/25.
-//
-
 import Foundation
 
 protocol MissionViewModelProtocol {
@@ -48,8 +41,6 @@ final class MissionViewModel: ObservableObject, MissionViewModelProtocol {
             if let astronaut = astronauts[member.name] {
                 return CrewMember(role: member.role, astronaut: astronaut)
             } else {
-                print("Debug - Astronauts keys: \(astronauts.keys.joined(separator: ", "))")
-                print("Debug - Looking for: \(member.name)")
                 fatalError("Missing \(member.name)")
             }
         }

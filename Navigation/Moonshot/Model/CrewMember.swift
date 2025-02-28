@@ -1,11 +1,4 @@
-//
-//  CrewMember.swift
-//  Moonshot
-//
-//  Created by Erik Sebastian de Erice Jerez on 20/11/24.
-//
-
-import Foundation
+import SwiftUI
 
 struct CrewMember: Hashable, Identifiable {
     let id: UUID = UUID()

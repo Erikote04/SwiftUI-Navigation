@@ -1,11 +1,4 @@
-//
-//  Mission.swift
-//  Moonshot
-//
-//  Created by Erik Sebastian de Erice Jerez on 16/10/24.
-//
-
-import Foundation
+import SwiftUI
 
 struct Mission: Codable, Hashable, Identifiable {
     struct CrewRole: Codable, Hashable {

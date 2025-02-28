@@ -1,10 +1,3 @@
-//
-//  MissionGridCellView.swift
-//  Moonshot
-//
-//  Created by Erik Sebastian de Erice Jerez on 20/11/24.
-//
-
 import SwiftUI
 
 struct MissionGridCellView: View {

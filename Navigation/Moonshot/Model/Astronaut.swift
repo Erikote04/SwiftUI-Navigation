@@ -1,11 +1,4 @@
-//
-//  Astronaut.swift
-//  Moonshot
-//
-//  Created by Erik Sebastian de Erice Jerez on 16/10/24.
-//
-
-import Foundation
+import SwiftUI
 
 struct Astronaut: Codable, Hashable, Identifiable {
     let id: String
