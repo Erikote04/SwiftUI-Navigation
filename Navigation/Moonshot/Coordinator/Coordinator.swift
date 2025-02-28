@@ -2,24 +2,14 @@ import SwiftUI
 
 protocol CoordinatorProtocol {
     var path: NavigationPath { get set }
-    var sheet: Sheet? { get set }
-    var fullScreenCover: FullScreenCover? { get set }
     
     func push(_ view: AppView)
     func pop()
     func popToRoot()
-    
-    func presentSheet(_ sheet: Sheet)
-    func dismissSheet()
-    
-    func presentFullScreenCover(_ fullScreenCover: FullScreenCover)
-    func dismissFullScreenCover()
 }
 
 final class Coordinator: CoordinatorProtocol, ObservableObject {
     @Published var path: NavigationPath = NavigationPath()
-    @Published var sheet: Sheet?
-    @Published var fullScreenCover: FullScreenCover?
     
     private let astronautViewModel: AstronautViewModel
     private let missionViewModel: MissionViewModel
@@ -51,27 +41,11 @@ final class Coordinator: CoordinatorProtocol, ObservableObject {
         path.removeLast(path.count)
     }
     
-    func presentSheet(_ sheet: Sheet) {
-        self.sheet = sheet
-    }
-    
-    func dismissSheet() {
-        self.sheet = nil
-    }
-    
-    func presentFullScreenCover(_ fullScreenCover: FullScreenCover) {
-        self.fullScreenCover = fullScreenCover
-    }
-    
-    func dismissFullScreenCover() {
-        self.fullScreenCover = nil
-    }
-    
     @ViewBuilder
     func build(_ view: AppView) -> some View {
         switch view {
         case .missions: MissionsView(coordinator: self, viewModel: missionViewModel)
-        case .missionDetail(let mission): MissionDetailView(viewModel: missionViewModel, mission: mission)
+        case .missionDetail(let mission): MissionDetailView(coordinator: self, viewModel: missionViewModel, mission: mission)
         case .astronauts: AstronautsListView(coordinator: self, viewModel: astronautViewModel)
         case .astronautDetail(let astronaut): AstronautDetailView(astronaut: astronaut)
         }

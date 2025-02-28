@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct MissionDetailView: View {
+    @ObservedObject var coordinator: Coordinator
     @ObservedObject var viewModel: MissionViewModel
     
     let mission: Mission
@@ -13,11 +14,8 @@ struct MissionDetailView: View {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
                         ForEach(viewModel.crew, id: \.role) { crewMember in
-                            NavigationLink {
-                                AstronautDetailView(astronaut: crewMember.astronaut)
-                            } label: {
-                                CrewMemberHScrollCellView(crewMember: crewMember)
-                            }
+                            Button { coordinator.push(.astronautDetail(crewMember.astronaut)) }
+                            label: { CrewMemberHScrollCellView(crewMember: crewMember) }
                         }
                     }
                 }
@@ -88,8 +86,7 @@ private struct MissionDetails: View {
 
 #Preview {
     let missions: [Mission] = Bundle.main.decode("missions.json")
-    let astronauts: [String: Astronaut] = Bundle.main.decode("astronauts.json")
     
-    MissionDetailView(viewModel: MissionViewModel(), mission: missions[0])
+    MissionDetailView(coordinator: Coordinator(), viewModel: MissionViewModel(), mission: missions[0])
         .preferredColorScheme(.dark)
 }
