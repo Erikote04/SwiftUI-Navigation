@@ -2,12 +2,12 @@ import SwiftUI
 
 @main
 struct MoonshotApp: App {
-    @StateObject private var tabBar = TabBarViewModel()
+    @StateObject private var tabBarCoordinator = TabBarCoordinator()
     
     var body: some Scene {
         WindowGroup {
-            TabBarView()
-                .environmentObject(tabBar)
+            tabBarCoordinator.build(.tabBar)
+                .environmentObject(tabBarCoordinator)
         }
     }
 }

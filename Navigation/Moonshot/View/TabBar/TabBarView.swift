@@ -1,13 +1,13 @@
 import SwiftUI
 
 struct TabBarView: View {
-    @EnvironmentObject var tabBar: TabBarViewModel
-    @StateObject private var missionCoordinator = MissionCoordinator()
-    @StateObject private var astronautCoordinator = AstronautCoordinator()
-    @StateObject private var loginCoordinator = LoginCoordinator()
+    @ObservedObject var coordinator: TabBarCoordinator
+    @ObservedObject var missionCoordinator: MissionCoordinator
+    @ObservedObject var astronautCoordinator: AstronautCoordinator
+    @ObservedObject var loginCoordinator: LoginCoordinator
     
     var body: some View {
-        TabView(selection: $tabBar.selectedTab) {
+        TabView(selection: $coordinator.selectedTab) {
             NavigationStack(path: $missionCoordinator.path) {
                 missionCoordinator.build(.missions)
                     .navigationDestination(for: AppView.self) { view in
@@ -52,5 +52,5 @@ struct TabBarView: View {
 }
 
 #Preview {
-    TabBarView()
+    TabBarView(coordinator: TabBarCoordinator(), missionCoordinator: MissionCoordinator(), astronautCoordinator: AstronautCoordinator(), loginCoordinator: LoginCoordinator())
 }

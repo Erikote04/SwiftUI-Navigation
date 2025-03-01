@@ -3,6 +3,8 @@ import SwiftUI
 enum AppView: Identifiable, Hashable {
     var id: Self { self }
     
+    case tabBar
+    
     case missions
     case missionDetail(_ mission: Mission)
     

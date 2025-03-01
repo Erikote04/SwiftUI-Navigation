@@ -33,7 +33,7 @@ struct MissionDetailView: View {
 }
 
 private struct MissionDetails: View {
-    @EnvironmentObject var tabBar: TabBarViewModel
+    @EnvironmentObject var tabBarCoordinator: TabBarCoordinator
     
     let mission: Mission
     
@@ -74,7 +74,7 @@ private struct MissionDetails: View {
                 
                 Spacer()
                 
-                Button { tabBar.selectedTab = .astronauts }
+                Button { tabBarCoordinator.selectedTab = .astronauts }
                 label: {
                     HStack(spacing: 8) {
                         Text("Astronauts")
