@@ -36,6 +36,9 @@ class BaseCoordinator: BaseCoordinatorProtocol, ObservableObject {
     }
     
     func popToRoot() {
+        if sheet != nil { dismissSheet() }
+        if fullScreenCover != nil { dismissFullScreenCover() }
+        
         path.removeLast(path.count)
     }
     
