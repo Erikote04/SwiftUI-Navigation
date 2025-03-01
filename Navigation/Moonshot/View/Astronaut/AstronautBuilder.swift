@@ -7,7 +7,7 @@ final class AstronautBuilder {
     }()
     
     func build(with coordinator: AstronautCoordinator) -> some View {
-        AstronautsListView(coordinator: coordinator, viewModel: viewModel)
+        AstronautsView(coordinator: coordinator, viewModel: viewModel)
     }
     
     func buildAstronautDetail(for astronaut: Astronaut) -> some View {
