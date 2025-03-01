@@ -10,6 +10,7 @@ final class UseCaseContainer {
     private init() {
         register(AstronautUseCase() as AstronautUseCaseProtocol)
         register(MissionUseCase() as MissionUseCaseProtocol)
+        register(LogLoginUseCase() as LogLoginUseCaseProtocol)
     }
     
     private func register<T>(_ useCase: T) {
