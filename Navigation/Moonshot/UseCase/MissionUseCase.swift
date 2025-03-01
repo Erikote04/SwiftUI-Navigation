@@ -1,6 +1,6 @@
 import Foundation
 
-protocol MissionUseCaseProtocol {
+protocol MissionUseCaseProtocol: UseCaseProtocol {
     func getMissions() -> [Mission]
 }
 

@@ -1,6 +1,6 @@
 import Foundation
 
-protocol AstronautUseCaseProtocol {
+protocol AstronautUseCaseProtocol: UseCaseProtocol {
     func getAstronauts() -> [String: Astronaut]
 }
 

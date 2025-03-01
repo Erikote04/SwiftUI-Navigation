@@ -3,8 +3,8 @@ import SwiftUI
 final class MissionBuilder {
     
     private(set) lazy var viewModel: MissionViewModel = {
-        MissionViewModel(missionUseCase: UseCaseContainer.shared.getMissionUseCase(),
-            astronautUseCase: UseCaseContainer.shared.getAstronautUseCase())
+        MissionViewModel(missionUseCase: UseCaseContainer.shared.getCurrentUseCase(),
+                         astronautUseCase: UseCaseContainer.shared.getCurrentUseCase())
     }()
     
     func build(with coordinator: MissionCoordinator) -> some View {
