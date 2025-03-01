@@ -29,6 +29,7 @@ struct MoonshotTabView: View {
             }
         }
         .tint(.white)
+        .environmentObject(coordinator)
     }
 }
 

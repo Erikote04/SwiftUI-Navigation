@@ -9,7 +9,7 @@ struct MissionDetailView: View {
     var body: some View {
         ScrollView {
             VStack {
-                MissionDetails(coordinator: coordinator, mission: mission)
+                MissionDetails(mission: mission)
                 
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
@@ -33,7 +33,6 @@ struct MissionDetailView: View {
 }
 
 private struct MissionDetails: View {
-    @ObservedObject var coordinator: Coordinator
     let mission: Mission
     
     var body: some View {
@@ -66,19 +65,10 @@ private struct MissionDetails: View {
                 .foregroundStyle(.lightBackground)
                 .padding(.vertical)
             
-            Button { coordinator.push(.astronauts) }
-            label: {
-                HStack {
-                    Text("Astronauts")
-                        .font(.title.bold())
-                        .foregroundStyle(.white)
-                        .padding(.bottom, 4)
-                    
-                    Image(systemName: "chevron.right")
-                        .font(.title2.bold())
-                        .foregroundStyle(.lightBackground)
-                }
-            }
+            Text("Crew")
+                .font(.title.bold())
+                .foregroundStyle(.white)
+                .padding(.bottom, 4)
         }
         .padding(.horizontal)
     }
