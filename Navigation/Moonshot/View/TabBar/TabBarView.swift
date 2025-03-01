@@ -4,6 +4,7 @@ struct TabBarView: View {
     @EnvironmentObject var tabBar: TabBarViewModel
     @StateObject private var missionCoordinator = MissionCoordinator()
     @StateObject private var astronautCoordinator = AstronautCoordinator()
+    @StateObject private var loginCoordinator = LoginCoordinator()
     
     var body: some View {
         TabView(selection: $tabBar.selectedTab) {
@@ -27,6 +28,23 @@ struct TabBarView: View {
             .tag(Tab.astronauts)
             .tabItem {
                 Label("Astronauts", systemImage: "person.3.fill")
+            }
+            
+            NavigationStack(path: $loginCoordinator.path) {
+                loginCoordinator.build(.login)
+                    .navigationDestination(for: AppView.self) { view in
+                        loginCoordinator.build(view)
+                    }
+                    .sheet(item: $loginCoordinator.sheet) { sheet in
+                        loginCoordinator.build(sheet)
+                    }
+                    .fullScreenCover(item: $loginCoordinator.fullScreenCover) { fullScreenCover in
+                        loginCoordinator.build(fullScreenCover)
+                    }
+            }
+            .tag(Tab.login)
+            .tabItem {
+                Label("Login", systemImage: "person.circle.fill")
             }
         }
         .tint(.white)
