@@ -33,6 +33,8 @@ struct MissionDetailView: View {
 }
 
 private struct MissionDetails: View {
+    @EnvironmentObject var tabBar: TabBarViewModel
+    
     let mission: Mission
     
     var body: some View {
@@ -65,10 +67,19 @@ private struct MissionDetails: View {
                 .foregroundStyle(.lightBackground)
                 .padding(.vertical)
             
-            Text("Crew")
-                .font(.title.bold())
-                .foregroundStyle(.white)
-                .padding(.bottom, 4)
+            Button { tabBar.selectedTab = .astronauts }
+            label: {
+                HStack(spacing: 8) {
+                    Text("Crew")
+                        .font(.title.bold())
+                        .foregroundStyle(.white)
+                        .padding(.bottom, 4)
+                    
+                    Image(systemName: "chevron.right")
+                        .font(.title2.bold())
+                        .foregroundStyle(.lightBackground)
+                }
+            }
         }
         .padding(.horizontal)
     }

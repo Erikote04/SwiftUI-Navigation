@@ -1,12 +1,12 @@
 import SwiftUI
 
-struct HomeView: View {
+struct TabBarView: View {
+    @EnvironmentObject var tabBar: TabBarViewModel
     @StateObject private var missionCoordinator = MissionCoordinator()
     @StateObject private var astronautCoordinator = AstronautCoordinator()
-    @State private var selectedTab: Tab = .missions
     
     var body: some View {
-        TabView(selection: $selectedTab) {
+        TabView(selection: $tabBar.selectedTab) {
             NavigationStack(path: $missionCoordinator.path) {
                 missionCoordinator.build(.missions)
                     .navigationDestination(for: AppView.self) { view in
@@ -15,7 +15,7 @@ struct HomeView: View {
             }
             .tag(Tab.missions)
             .tabItem {
-                Label("Missions", systemImage: "flag.pattern.checkered.circle")
+                Label("Missions", systemImage: "flag.pattern.checkered")
             }
             
             NavigationStack(path: $astronautCoordinator.path) {
@@ -26,7 +26,7 @@ struct HomeView: View {
             }
             .tag(Tab.astronauts)
             .tabItem {
-                Label("Astronauts", systemImage: "person.circle.fill")
+                Label("Astronauts", systemImage: "person.3.fill")
             }
         }
         .tint(.white)
@@ -34,5 +34,5 @@ struct HomeView: View {
 }
 
 #Preview {
-    HomeView()
+    TabBarView()
 }

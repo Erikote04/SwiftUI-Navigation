@@ -1,17 +1,13 @@
-//
-//  MoonshotApp.swift
-//  Moonshot
-//
-//  Created by Erik Sebastian de Erice Jerez on 15/10/24.
-//
-
 import SwiftUI
 
 @main
 struct MoonshotApp: App {
+    @StateObject var tabbarViewModel = TabBarViewModel()
+    
     var body: some Scene {
         WindowGroup {
-            HomeView()
+            TabBarView()
+                .environmentObject(tabbarViewModel)
         }
     }
 }
