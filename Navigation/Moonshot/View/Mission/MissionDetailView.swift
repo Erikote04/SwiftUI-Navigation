@@ -67,17 +67,23 @@ private struct MissionDetails: View {
                 .foregroundStyle(.lightBackground)
                 .padding(.vertical)
             
-            Button { tabBar.selectedTab = .astronauts }
-            label: {
-                HStack(spacing: 8) {
-                    Text("Crew")
-                        .font(.title.bold())
-                        .foregroundStyle(.white)
-                        .padding(.bottom, 4)
-                    
-                    Image(systemName: "chevron.right")
-                        .font(.title2.bold())
-                        .foregroundStyle(.lightBackground)
+            HStack(alignment: .bottom) {
+                Text("Crew")
+                    .font(.title.bold())
+                    .foregroundStyle(.white)
+                
+                Spacer()
+                
+                Button { tabBar.selectedTab = .astronauts }
+                label: {
+                    HStack(spacing: 8) {
+                        Text("Astronauts")
+                            .foregroundStyle(.white)
+                            .padding(.bottom, 4)
+                        
+                        Image(systemName: "chevron.right")
+                            .foregroundStyle(.white)
+                    }
                 }
             }
         }
