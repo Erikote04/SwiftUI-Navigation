@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct AstronautsListView: View {
-    @ObservedObject var coordinator: Coordinator
+    @ObservedObject var coordinator: AstronautCoordinator
     @ObservedObject var viewModel: AstronautViewModel
     
     var body: some View {
@@ -23,5 +23,5 @@ struct AstronautsListView: View {
 }
 
 #Preview {
-    AstronautsListView(coordinator: Coordinator(), viewModel: AstronautViewModel())
+    AstronautsListView(coordinator: AstronautCoordinator(), viewModel: AstronautViewModel())
 }
