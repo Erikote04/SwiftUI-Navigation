@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct MissionsListView: View {
-    @ObservedObject var coordinator: Coordinator
+    @ObservedObject var coordinator: MissionCoordinator
     let missions: [Mission]
     
     var body: some View {
@@ -18,5 +18,5 @@ struct MissionsListView: View {
 
 #Preview {
     let missions: [Mission] = Bundle.main.decode("missions.json")
-    MissionsListView(coordinator: Coordinator(), missions: missions)
+    MissionsListView(coordinator: MissionCoordinator(), missions: missions)
 }

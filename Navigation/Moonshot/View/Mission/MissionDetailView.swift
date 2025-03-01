@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct MissionDetailView: View {
-    @ObservedObject var coordinator: Coordinator
+    @ObservedObject var coordinator: MissionCoordinator
     @ObservedObject var viewModel: MissionViewModel
     
     let mission: Mission
@@ -77,6 +77,6 @@ private struct MissionDetails: View {
 #Preview {
     let missions: [Mission] = Bundle.main.decode("missions.json")
     
-    MissionDetailView(coordinator: Coordinator(), viewModel: MissionViewModel(), mission: missions[0])
+    MissionDetailView(coordinator: MissionCoordinator(), viewModel: MissionViewModel(), mission: missions[0])
         .preferredColorScheme(.dark)
 }

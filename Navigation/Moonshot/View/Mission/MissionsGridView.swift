@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct MissionsGridView: View {
-    @ObservedObject var coordinator: Coordinator
+    @ObservedObject var coordinator: MissionCoordinator
     let missions: [Mission]
     
     let columns = [
@@ -23,5 +23,5 @@ struct MissionsGridView: View {
 
 #Preview {
     let missions: [Mission] = Bundle.main.decode("missions.json")
-    MissionsGridView(coordinator: Coordinator(), missions: missions)
+    MissionsGridView(coordinator: MissionCoordinator(), missions: missions)
 }
