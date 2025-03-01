@@ -1,8 +1,6 @@
 import SwiftUI
 
-protocol FeatCoordinator {
-    associatedtype FeatView: View
-    
+protocol BaseCoordinatorProtocol {
     var path: NavigationPath { get set }
     var sheet: Sheet? { get set }
     var fullScreenCover: FullScreenCover? { get set }
@@ -18,8 +16,48 @@ protocol FeatCoordinator {
     func dismissFullScreenCover()
     
     func canHandle(view: AppView) -> Bool
+}
+
+class BaseCoordinator: BaseCoordinatorProtocol, ObservableObject {
+    @Published var path: NavigationPath = NavigationPath()
+    @Published var sheet: Sheet?
+    @Published var fullScreenCover: FullScreenCover?
     
-    @ViewBuilder func build(_ view: AppView) -> FeatView
+    init() {}
+    
+    func push(_ view: AppView) {
+        guard canHandle(view: view) else { return }
+        path.append(view)
+    }
+    
+    func pop() {
+        guard !path.isEmpty else { return }
+        path.removeLast()
+    }
+    
+    func popToRoot() {
+        path.removeLast(path.count)
+    }
+    
+    func presentSheet(_ sheet: Sheet) {
+        self.sheet = sheet
+    }
+    
+    func dismissSheet() {
+        self.sheet = nil
+    }
+    
+    func presentFullScreenCover(_ fullScreenCover: FullScreenCover) {
+        self.fullScreenCover = fullScreenCover
+    }
+    
+    func dismissFullScreenCover() {
+        self.fullScreenCover = nil
+    }
+    
+    func canHandle(view: AppView) -> Bool {
+        fatalError("Las subclases deben implementar canHandle(view:)")
+    }
 }
 
 /// Presenting a sheet inside another sheet or a fullScreenCover can sometimes have unexpected behaviors.

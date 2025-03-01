@@ -1,45 +1,12 @@
 import SwiftUI
 
-final class MissionCoordinator: FeatCoordinator, ObservableObject {
-    @Published var path: NavigationPath = NavigationPath()
-    @Published var sheet: Sheet?
-    @Published var fullScreenCover: FullScreenCover?
+final class MissionCoordinator: BaseCoordinator {
     
     private let missionBuilder: MissionBuilder = MissionBuilder()
     
-    init() {}
+    override init() { super.init() }
     
-    func push(_ view: AppView) {
-        guard canHandle(view: view) else { return }
-        path.append(view)
-    }
-    
-    func pop() {
-        guard !path.isEmpty else { return }
-        path.removeLast()
-    }
-    
-    func popToRoot() {
-        path.removeLast(path.count)
-    }
-    
-    func presentSheet(_ sheet: Sheet) {
-        self.sheet = sheet
-    }
-    
-    func dismissSheet() {
-        self.sheet = nil
-    }
-    
-    func presentFullScreenCover(_ fullScreenCover: FullScreenCover) {
-        self.fullScreenCover = fullScreenCover
-    }
-    
-    func dismissFullScreenCover() {
-        self.fullScreenCover = nil
-    }
-    
-    func canHandle(view: AppView) -> Bool {
+    override func canHandle(view: AppView) -> Bool {
         switch view {
         case .missions, .missionDetail(_), .astronautDetail(_): true
         default: false
