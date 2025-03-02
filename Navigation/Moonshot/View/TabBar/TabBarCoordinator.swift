@@ -1,15 +1,24 @@
 import SwiftUI
 
-enum Tab {
+enum TabItem {
     case missions
     case astronauts
     case login
+    
+    var title: String {
+        switch self {
+        case .missions: return "Missions"
+        case .astronauts: return "Astronauts"
+        case .login: return "Login"
+        }
+    }
 }
 
 final class TabBarCoordinator: BaseCoordinator {
-    private let tabBarBuilder: TabBarBuilder = TabBarBuilder()
+    @Published var selectedTab: TabItem = .missions
+    let tabs: [TabItem] = [.missions, .astronauts, .login]
     
-    @Published var selectedTab: Tab = .missions
+    private let tabBarBuilder: TabBarBuilder = TabBarBuilder()
     
     private lazy var missionCoordinator = MissionCoordinator()
     private lazy var astronautCoordinator = AstronautCoordinator()
