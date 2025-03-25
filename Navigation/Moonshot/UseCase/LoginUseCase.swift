@@ -1,12 +1,12 @@
 import Foundation
 
-protocol LogLoginUseCaseProtocol: UseCaseProtocol {
+protocol LoginUseCaseProtocol: UseCaseProtocol {
     func login()
     func register()
     func forgotPassword()
 }
 
-class LogLoginUseCase: LogLoginUseCaseProtocol {
+class LoginUseCase: LoginUseCaseProtocol {
     func login() {}
     func register() {}
     func forgotPassword() {}

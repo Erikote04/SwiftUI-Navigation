@@ -8,9 +8,9 @@ protocol LoginViewModelProtocol {
 
 final class LoginViewModel: LoginViewModelProtocol, ObservableObject {
     
-    private let loginUseCase: LogLoginUseCaseProtocol
+    private let loginUseCase: LoginUseCaseProtocol
     
-    init(loginUseCase: LogLoginUseCaseProtocol = LogLoginUseCase()) {
+    init(loginUseCase: LoginUseCaseProtocol = LoginUseCase()) {
         self.loginUseCase = loginUseCase
     }
     
