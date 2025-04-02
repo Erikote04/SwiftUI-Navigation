@@ -6,8 +6,19 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXContainerItemProxy section */
+		BBCC7F9F2D9DE70100E75DAA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BBAD11862CBE6CB20053268F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BBAD118D2CBE6CB20053268F;
+			remoteInfo = Navigation;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		BBAD118E2CBE6CB20053268F /* Navigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Navigation.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BBCC7F9B2D9DE70100E75DAA /* NavigationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NavigationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -16,10 +27,22 @@
 			path = Moonshot;
 			sourceTree = "<group>";
 		};
+		BBCC7F9C2D9DE70100E75DAA /* NavigationTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = NavigationTests;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		BBAD118B2CBE6CB20053268F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BBCC7F982D9DE70100E75DAA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -33,6 +56,7 @@
 			isa = PBXGroup;
 			children = (
 				BBAD11902CBE6CB20053268F /* Moonshot */,
+				BBCC7F9C2D9DE70100E75DAA /* NavigationTests */,
 				BBAD118F2CBE6CB20053268F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -41,6 +65,7 @@
 			isa = PBXGroup;
 			children = (
 				BBAD118E2CBE6CB20053268F /* Navigation.app */,
+				BBCC7F9B2D9DE70100E75DAA /* NavigationTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -70,6 +95,29 @@
 			productReference = BBAD118E2CBE6CB20053268F /* Navigation.app */;
 			productType = "com.apple.product-type.application";
 		};
+		BBCC7F9A2D9DE70100E75DAA /* NavigationTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BBCC7FA32D9DE70100E75DAA /* Build configuration list for PBXNativeTarget "NavigationTests" */;
+			buildPhases = (
+				BBCC7F972D9DE70100E75DAA /* Sources */,
+				BBCC7F982D9DE70100E75DAA /* Frameworks */,
+				BBCC7F992D9DE70100E75DAA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BBCC7FA02D9DE70100E75DAA /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				BBCC7F9C2D9DE70100E75DAA /* NavigationTests */,
+			);
+			name = NavigationTests;
+			packageProductDependencies = (
+			);
+			productName = NavigationTests;
+			productReference = BBCC7F9B2D9DE70100E75DAA /* NavigationTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -77,11 +125,15 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1600;
+				LastSwiftUpdateCheck = 1620;
 				LastUpgradeCheck = 1600;
 				TargetAttributes = {
 					BBAD118D2CBE6CB20053268F = {
 						CreatedOnToolsVersion = 16.0;
+					};
+					BBCC7F9A2D9DE70100E75DAA = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = BBAD118D2CBE6CB20053268F;
 					};
 				};
 			};
@@ -100,12 +152,20 @@
 			projectRoot = "";
 			targets = (
 				BBAD118D2CBE6CB20053268F /* Navigation */,
+				BBCC7F9A2D9DE70100E75DAA /* NavigationTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		BBAD118C2CBE6CB20053268F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BBCC7F992D9DE70100E75DAA /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -122,7 +182,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BBCC7F972D9DE70100E75DAA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		BBCC7FA02D9DE70100E75DAA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BBAD118D2CBE6CB20053268F /* Navigation */;
+			targetProxy = BBCC7F9F2D9DE70100E75DAA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		BBAD119A2CBE6CB30053268F /* Debug */ = {
@@ -302,6 +377,44 @@
 			};
 			name = Release;
 		};
+		BBCC7FA12D9DE70100E75DAA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9PY53WPJ8K;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.eriksebastiandeericejerez.NavigationTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Navigation.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Navigation";
+			};
+			name = Debug;
+		};
+		BBCC7FA22D9DE70100E75DAA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9PY53WPJ8K;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.eriksebastiandeericejerez.NavigationTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Navigation.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Navigation";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -319,6 +432,15 @@
 			buildConfigurations = (
 				BBAD119D2CBE6CB30053268F /* Debug */,
 				BBAD119E2CBE6CB30053268F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BBCC7FA32D9DE70100E75DAA /* Build configuration list for PBXNativeTarget "NavigationTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BBCC7FA12D9DE70100E75DAA /* Debug */,
+				BBCC7FA22D9DE70100E75DAA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
