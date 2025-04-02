@@ -1,8 +1,8 @@
 import Foundation
 
 protocol MissionViewModelProtocol {
-    func getMissions()
-    func getAstronauts()
+    func getMissions() async throws
+    func getAstronauts() async throws
     func getCrew(mission: Mission, astronauts: [String: Astronaut])
 }
 
@@ -22,16 +22,26 @@ final class MissionViewModel: ObservableObject, MissionViewModelProtocol {
     }
     
     func onAppear() {
-        getMissions()
-        getAstronauts()
+        Task {
+            try await getMissions()
+            try await getAstronauts()
+        }
     }
     
-    func getMissions() {
-        missions = missionUseCase.getMissions()
+    func getMissions() async throws {
+        let result = try await missionUseCase.getMissions()
+        
+        await MainActor.run {
+            self.missions = result
+        }
     }
     
-    func getAstronauts() {
-        astronauts = astronautUseCase.getAstronauts()
+    func getAstronauts() async throws {
+        let result = try await astronautUseCase.getAstronauts()
+        
+        await MainActor.run {
+            self.astronauts = result
+        }
     }
     
     func getCrew(mission: Mission, astronauts: [String: Astronaut]) {

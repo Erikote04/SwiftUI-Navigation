@@ -17,7 +17,7 @@ struct AstronautsView: View {
         .background(.darkBackground)
         .preferredColorScheme(.dark)
         .onAppear {
-            viewModel.viewAppear()
+            viewModel.onAppear()
         }        
     }
 }

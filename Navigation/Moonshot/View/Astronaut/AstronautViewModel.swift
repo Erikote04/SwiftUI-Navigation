@@ -1,7 +1,7 @@
 import Foundation
 
 protocol AstronautViewModelProtocol {
-    func getAstronauts()
+    func getAstronauts() async throws
 }
 
 final class AstronautViewModel: ObservableObject, AstronautViewModelProtocol {
@@ -17,11 +17,15 @@ final class AstronautViewModel: ObservableObject, AstronautViewModelProtocol {
         self.astronautUseCase = astronautsUseCase
     }
     
-    func viewAppear() {
-        getAstronauts()
+    func onAppear() {
+        Task { try await getAstronauts() }
     }
     
-    func getAstronauts() {
-        astronauts = astronautUseCase.getAstronauts()
+    func getAstronauts() async throws {
+        let result = try await astronautUseCase.getAstronauts()
+        
+        await MainActor.run {
+            astronauts = result
+        }
     }
 }
