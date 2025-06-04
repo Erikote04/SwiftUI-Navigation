@@ -7,6 +7,7 @@ struct MissionUseCaseTest {
     @Test func getMissions() async throws {
         let useCase = MissionUseCase()
         let missions = try #require(await useCase.getMissions())
+        
         #expect(missions.isEmpty == false)
         #expect(missions.count == 12)
     }

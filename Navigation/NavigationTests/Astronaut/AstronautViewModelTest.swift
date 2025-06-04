@@ -8,6 +8,7 @@ struct AstronautViewModelTest {
     
     @Test func getAstronauts() async throws {
         try #require(await viewModel.getAstronauts())
+        
         #expect(viewModel.astronauts.isEmpty == false)
         #expect(viewModel.astronauts.count == 32)
     }

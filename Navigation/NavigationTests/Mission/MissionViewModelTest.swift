@@ -14,6 +14,7 @@ struct MissionViewModelTest {
 
     @Test func getMissions() async throws {
         try #require(await viewModel.getMissions())
+        
         #expect(viewModel.missions.isEmpty == false)
         #expect(viewModel.missions.count == 12)
     }
