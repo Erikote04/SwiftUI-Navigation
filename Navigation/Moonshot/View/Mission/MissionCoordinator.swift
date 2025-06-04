@@ -2,9 +2,20 @@ import SwiftUI
 
 final class MissionCoordinator: BaseCoordinator {
     
-    private let missionBuilder: MissionBuilder = MissionBuilder()
+    private let builder: MissionBuilderProtocol
     
-    override init() { super.init() }
+    init(builder: MissionBuilderProtocol) {
+        self.builder = builder
+        super.init()
+    }
+    
+    convenience override init() {
+        let missionUseCase: MissionUseCaseProtocol = UseCaseContainer.shared.getCurrentUseCase()
+        let AstronautUseCase: AstronautUseCaseProtocol = UseCaseContainer.shared.getCurrentUseCase()
+        let builder = MissionBuilder(missionUseCase: missionUseCase, astronautUseCase: AstronautUseCase)
+        
+        self.init(builder: builder)
+    }
     
     override func canHandle(view: AppView) -> Bool {
         switch view {
@@ -15,9 +26,9 @@ final class MissionCoordinator: BaseCoordinator {
     
     @ViewBuilder func build(_ view: AppView) -> some View {
         switch view {
-        case .missions: missionBuilder.build(with: self)
-        case .missionDetail(let mission): missionBuilder.buildMissionDetail(with: self, for: mission)
-        case .astronautDetail(let astronaut): missionBuilder.buildAstronautDetail(for: astronaut)
+        case .missions: builder.build(with: self)
+        case .missionDetail(let mission): builder.buildMissionDetail(with: self, for: mission)
+        case .astronautDetail(let astronaut): builder.buildAstronautDetail(for: astronaut)
         default: EmptyView()
         }
     }

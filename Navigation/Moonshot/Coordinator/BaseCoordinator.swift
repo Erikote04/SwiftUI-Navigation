@@ -62,12 +62,3 @@ class BaseCoordinator: BaseCoordinatorProtocol, ObservableObject {
         fatalError("Las subclases deben implementar canHandle(view:)")
     }
 }
-
-/// If you want to navigate inside a sheet or a fullScreenCover you must implement the following lines inside the corresponding build function
-
-/// NavigationStack(path: Binding(get: { self.path }, set: { self.path = $0 })) {
-///     YourView(coordinator: self)
-///         .navigationDestination(for: AppView.self) { view in
-///             self.build(view)
-///         }
-/// }
