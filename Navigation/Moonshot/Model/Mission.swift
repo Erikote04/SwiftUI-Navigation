@@ -23,3 +23,9 @@ struct Mission: Codable, Hashable, Identifiable {
         launchDate?.formatted(date: .abbreviated, time: .omitted) ?? "N/A"
     }
 }
+
+extension Mission {
+    static func == (lhs: Mission, rhs: Mission) -> Bool {
+        lhs.id == rhs.id
+    }
+}

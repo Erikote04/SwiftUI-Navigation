@@ -5,3 +5,9 @@ struct Astronaut: Codable, Hashable, Identifiable {
     let name: String
     let description: String
 }
+
+extension Astronaut: Equatable {
+    static func == (lhs: Astronaut, rhs: Astronaut) -> Bool {
+        lhs.id == rhs.id
+    }
+}
