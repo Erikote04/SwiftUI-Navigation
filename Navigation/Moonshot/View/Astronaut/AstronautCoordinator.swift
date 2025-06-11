@@ -2,9 +2,19 @@ import SwiftUI
 
 class AstronautCoordinator: BaseCoordinator {
     
-    private let astronautBuilder: AstronautBuilder = AstronautBuilder()
+    private let builder: AstronautBuilderProtocol
     
-    override init() {}
+    init(builder: AstronautBuilderProtocol) {
+        self.builder = builder
+        super.init()
+    }
+    
+    convenience override init() {
+        let useCase: AstronautUseCaseProtocol = UseCaseContainer.shared.getCurrentUseCase()
+        let builder = AstronautBuilder(useCase: useCase)
+        
+        self.init(builder: builder)
+    }
     
     override func canHandle(view: AppView) -> Bool {
         switch view {
@@ -15,8 +25,8 @@ class AstronautCoordinator: BaseCoordinator {
     
     @ViewBuilder func build(_ view: AppView) -> some View {
         switch view {
-        case .astronauts: astronautBuilder.build(with: self)
-        case .astronautDetail(let astronaut): astronautBuilder.buildAstronautDetail(for: astronaut)
+        case .astronauts: builder.build(with: self)
+        case .astronautDetail(let astronaut): builder.buildAstronautDetail(for: astronaut)
         default: EmptyView()
         }
     }
