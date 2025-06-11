@@ -61,31 +61,47 @@ struct MissionCoordinatorTest {
         #expect(builder.buildAstronautDetailCallCount == 1)
     }
     
-    @Test("Build unknown view doesn't call builder")
-    func buildUnknownDoesntCallBuilder() {
+    @Test("Build unknown view doesn't call builder", arguments: [
+        AppView.astronauts,
+        AppView.login,
+        AppView.register,
+        AppView.tabBar,
+    ])
+    func buildUnknownDoesntCallBuilder(view: AppView) {
+        let coordinator = MissionCoordinator(builder: builder)
+        let _ = coordinator.build(view)
+        
         #expect(builder.buildMissionCallCount == 0)
         #expect(builder.buildMissionDetailCallCount == 0)
         #expect(builder.buildAstronautDetailCallCount == 0)
     }
     
-    @Test("Push known view updates path")
-    func pushKnownViewUpdatesPath() {
+    @Test("Push known view updates path", arguments: [
+        AppView.missions,
+        AppView.missionDetail(Mission.firstSampleMission),
+        AppView.astronautDetail(Astronaut.firstSampleAstronaut),
+    ])
+    func pushKnownViewUpdatesPath(view: AppView) {
         let coordinator = MissionCoordinator(builder: builder)
         let initialCount = coordinator.path.count
         
-        coordinator.push(.missions)
+        coordinator.push(view)
         
         #expect(coordinator.path.count == initialCount + 1)
     }
     
-    @Test("Push unknown view doesn't updates path")
-    func pushUnknownViewDoesntUpdatesPath() {
+    @Test("Push unknown view doesn't updates path", arguments: [
+        AppView.astronauts,
+        AppView.login,
+        AppView.register,
+        AppView.tabBar,
+    ])
+    func pushUnknownViewDoesntUpdatesPath(view: AppView) {
         let coordinator = MissionCoordinator(builder: builder)
-        let initialCount = coordinator.path.count
         
-        coordinator.push(.astronauts)
+        coordinator.push(view)
         
-        #expect(coordinator.path.count == initialCount)
+        #expect(coordinator.path.count == 0)
     }
     
     @Test("Pop view decreases path count")
@@ -93,8 +109,9 @@ struct MissionCoordinatorTest {
         let coordinator = MissionCoordinator(builder: builder)
         
         coordinator.push(.missions)
-        coordinator.pop()
+        #expect(coordinator.path.count == 1)
         
+        coordinator.pop()
         #expect(coordinator.path.count == 0)
     }
     
@@ -103,6 +120,7 @@ struct MissionCoordinatorTest {
         let coordinator = MissionCoordinator(builder: builder)
         
         coordinator.pop()
+        
         #expect(coordinator.path.count == 0)
     }
     
@@ -111,9 +129,9 @@ struct MissionCoordinatorTest {
         let coordinator = MissionCoordinator(builder: builder)
         
         coordinator.push(.missions)
-        coordinator.push(.missionDetail(.firstSampleMission))
-        coordinator.popToRoot()
+        #expect(coordinator.path.count == 1)
         
+        coordinator.popToRoot()
         #expect(coordinator.path.count == 0)
     }
     
@@ -122,6 +140,7 @@ struct MissionCoordinatorTest {
         let coordinator = MissionCoordinator(builder: builder)
         
         coordinator.popToRoot()
+        
         #expect(coordinator.path.count == 0)
     }
     
