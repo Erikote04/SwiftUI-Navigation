@@ -34,16 +34,16 @@ struct AstronautCoordinatorTest {
         #expect(coordinator.canHandle(view: view) == false)
     }
     
-    @Test("Build astronauts view")
-    func buildAstronautsView() {
+    @Test("Builds astronauts view")
+    func buildsAstronautsView() {
         let coordinator = AstronautCoordinator(builder: builder)
         let _ = coordinator.build(.astronauts)
         
         #expect(builder.buildAstronautCallCount == 1)
     }
     
-    @Test("Build astronaut detail view")
-    func buildAstronautDetailView() {
+    @Test("Builds astronaut detail view")
+    func buildsAstronautDetailView() {
         let coordinator = AstronautCoordinator(builder: builder)
         let _ = coordinator.build(.astronautDetail(Astronaut.firstSampleAstronaut))
         
