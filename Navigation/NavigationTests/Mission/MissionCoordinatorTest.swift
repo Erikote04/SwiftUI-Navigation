@@ -16,8 +16,8 @@ struct MissionCoordinatorTest {
     
     @Test("Can handle known views", arguments: [
         AppView.missions,
-        AppView.missionDetail(Mission.firstSampleMission),
-        AppView.astronautDetail(Astronaut.firstSampleAstronaut)
+        AppView.missionDetail(Mission.sample),
+        AppView.astronautDetail(Astronaut.sample)
     ])
     func canHandleKnownViews(view: AppView) {
         let coordinator = MissionCoordinator(builder: builder)
@@ -48,7 +48,7 @@ struct MissionCoordinatorTest {
     @Test("Builds mission detail view")
     func buildsMissionDetailView() {
         let coordinator = MissionCoordinator(builder: builder)
-        let _ = coordinator.build(.missionDetail(.firstSampleMission))
+        let _ = coordinator.build(.missionDetail(.sample))
         
         #expect(builder.buildMissionDetailCallCount == 1)
     }
@@ -56,7 +56,7 @@ struct MissionCoordinatorTest {
     @Test("Builds astronaut detail view")
     func buildsAstronautDetailView() {
         let coordinator = MissionCoordinator(builder: builder)
-        let _ = coordinator.build(.astronautDetail(.firstSampleAstronaut))
+        let _ = coordinator.build(.astronautDetail(.sample))
         
         #expect(builder.buildAstronautDetailCallCount == 1)
     }
@@ -78,8 +78,8 @@ struct MissionCoordinatorTest {
     
     @Test("Push known view updates path", arguments: [
         AppView.missions,
-        AppView.missionDetail(Mission.firstSampleMission),
-        AppView.astronautDetail(Astronaut.firstSampleAstronaut),
+        AppView.missionDetail(Mission.sample),
+        AppView.astronautDetail(Astronaut.sample),
     ])
     func pushKnownViewUpdatesPath(view: AppView) {
         let coordinator = MissionCoordinator(builder: builder)
@@ -151,7 +151,7 @@ struct MissionCoordinatorTest {
         coordinator.push(.missions)
         #expect(coordinator.path.count == 1)
         
-        coordinator.push(.missionDetail(Mission.firstSampleMission))
+        coordinator.push(.missionDetail(Mission.sample))
         #expect(coordinator.path.count == 2)
         
         coordinator.popToRoot()

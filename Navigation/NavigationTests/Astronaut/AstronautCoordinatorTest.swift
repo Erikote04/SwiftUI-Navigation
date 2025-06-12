@@ -15,7 +15,7 @@ struct AstronautCoordinatorTest {
     
     @Test("Can handle known views", arguments: [
         AppView.astronauts,
-        AppView.astronautDetail(Astronaut.firstSampleAstronaut)
+        AppView.astronautDetail(Astronaut.sample)
     ])
     func canHandleKnownViews(view: AppView) {
         let coordinator = AstronautCoordinator(builder: builder)
@@ -24,7 +24,7 @@ struct AstronautCoordinatorTest {
 
     @Test("Can't handle unknown views", arguments: [
         AppView.login,
-        AppView.missionDetail(Mission.firstSampleMission),
+        AppView.missionDetail(Mission.sample),
         AppView.missions,
         AppView.register,
         AppView.tabBar,
@@ -45,14 +45,14 @@ struct AstronautCoordinatorTest {
     @Test("Builds astronaut detail view")
     func buildsAstronautDetailView() {
         let coordinator = AstronautCoordinator(builder: builder)
-        let _ = coordinator.build(.astronautDetail(Astronaut.firstSampleAstronaut))
+        let _ = coordinator.build(.astronautDetail(Astronaut.sample))
         
         #expect(builder.buildAstronautDetailCallCount == 1)
     }
     
     @Test("Build unknown view doesn't call builder", arguments: [
         AppView.login,
-        AppView.missionDetail(Mission.firstSampleMission),
+        AppView.missionDetail(Mission.sample),
         AppView.missions,
         AppView.register,
         AppView.tabBar,
@@ -67,20 +67,20 @@ struct AstronautCoordinatorTest {
     
     @Test("Push known view updates path", arguments: [
         AppView.astronauts,
-        AppView.astronautDetail(Astronaut.firstSampleAstronaut)
+        AppView.astronautDetail(Astronaut.sample)
     ])
     func pushKnownViewUpdatesPath(view: AppView) {
         let coordinator = AstronautCoordinator(builder: builder)
         let initialCount = coordinator.path.count
         
-        coordinator.push(.astronautDetail(Astronaut.firstSampleAstronaut))
+        coordinator.push(.astronautDetail(Astronaut.sample))
         
         #expect(coordinator.path.count == initialCount + 1)
     }
     
     @Test("Push unknown view doesn't update path", arguments: [
         AppView.login,
-        AppView.missionDetail(Mission.firstSampleMission),
+        AppView.missionDetail(Mission.sample),
         AppView.missions,
         AppView.register,
         AppView.tabBar,
@@ -97,7 +97,7 @@ struct AstronautCoordinatorTest {
     func popViewDecreasesPathCount() {
         let coordinator = AstronautCoordinator(builder: builder)
         
-        coordinator.push(.astronautDetail(Astronaut.firstSampleAstronaut))
+        coordinator.push(.astronautDetail(Astronaut.sample))
         #expect(coordinator.path.count == 1)
         
         coordinator.pop()
@@ -140,7 +140,7 @@ struct AstronautCoordinatorTest {
         coordinator.push(.astronauts)
         #expect(coordinator.path.count == 1)
         
-        coordinator.push(.astronautDetail(.firstSampleAstronaut))
+        coordinator.push(.astronautDetail(.sample))
         #expect(coordinator.path.count == 2)
         
         coordinator.popToRoot()

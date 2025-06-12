@@ -24,9 +24,9 @@ struct LoginCoordinatorTest {
     
     @Test("Can't handle unknown views", arguments: [
         AppView.astronauts,
-        AppView.astronautDetail(Astronaut.firstSampleAstronaut),
+        AppView.astronautDetail(Astronaut.sample),
         AppView.missions,
-        AppView.missionDetail(Mission.firstSampleMission),
+        AppView.missionDetail(Mission.sample),
         AppView.tabBar,
     ])
     func cantHandleUnknownViews(view: AppView) {
@@ -94,9 +94,9 @@ struct LoginCoordinatorTest {
     
     @Test("Build unknown view doesn't call builder", arguments: [
         AppView.astronauts,
-        AppView.astronautDetail(Astronaut.firstSampleAstronaut),
+        AppView.astronautDetail(Astronaut.sample),
         AppView.missions,
-        AppView.missionDetail(Mission.firstSampleMission),
+        AppView.missionDetail(Mission.sample),
         AppView.tabBar,
     ])
     func buildUnknownViewDoesntCallBuilder(view: AppView) {
@@ -122,9 +122,9 @@ struct LoginCoordinatorTest {
     
     @Test("Push unknown view does't update path", arguments: [
         AppView.astronauts,
-        AppView.astronautDetail(Astronaut.firstSampleAstronaut),
+        AppView.astronautDetail(Astronaut.sample),
         AppView.missions,
-        AppView.missionDetail(Mission.firstSampleMission),
+        AppView.missionDetail(Mission.sample),
         AppView.tabBar,
     ])
     func pushUnknownViewDoesntUpdatePath(view: AppView) {
