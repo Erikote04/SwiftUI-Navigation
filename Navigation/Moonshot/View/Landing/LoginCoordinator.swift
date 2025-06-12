@@ -2,10 +2,18 @@ import SwiftUI
 
 class LoginCoordinator: BaseCoordinator {
     
-    private let builder: LoginBuilder = LoginBuilder()
+    private let builder: LoginBuilderProtocol
     
-    override init() {
+    init(builder: LoginBuilderProtocol) {
+        self.builder = builder
         super.init()
+    }
+    
+    convenience override init() {
+        let useCase: LoginUseCaseProtocol = UseCaseContainer.shared.getCurrentUseCase()
+        let builder = LoginBuilder(useCase: useCase)
+        
+        self.init(builder: builder)
     }
     
     override func canHandle(view: AppView) -> Bool {

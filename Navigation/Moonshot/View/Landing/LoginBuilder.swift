@@ -1,27 +1,37 @@
 import SwiftUI
 
-final class LoginBuilder {
+protocol LoginBuilderProtocol {
+    func buildLogin(with coordinator: LoginCoordinator) -> AnyView
+    func buildRegister(with coordinator: LoginCoordinator) -> AnyView
+    func presentSheet(with coordinator: LoginCoordinator) -> AnyView
+    func presentFullScreenCover(with coordinator: LoginCoordinator) -> AnyView
+}
+
+final class LoginBuilder: LoginBuilderProtocol {
+    
+    private let useCase: LoginUseCaseProtocol
+    
+    init(useCase: LoginUseCaseProtocol) {
+        self.useCase = useCase
+    }
     
     private(set) lazy var viewModel: LoginViewModel = {
-        LoginViewModel(loginUseCase: UseCaseContainer.shared.getCurrentUseCase())
+        LoginViewModel(loginUseCase: useCase)
     }()
     
-    func buildLogin(with coordinator: LoginCoordinator) -> some View {
-        LoginView(coordinator: coordinator, viewModel: viewModel)
+    func buildLogin(with coordinator: LoginCoordinator) -> AnyView {
+        AnyView(LoginView(coordinator: coordinator, viewModel: viewModel))
     }
     
-    /// Builds RegisterView
-    func buildRegister(with coordinator: LoginCoordinator) -> some View {
-        RegisterView(coordinator: coordinator, viewModel: viewModel)
+    func buildRegister(with coordinator: LoginCoordinator) -> AnyView {
+        AnyView(RegisterView(coordinator: coordinator, viewModel: viewModel))
     }
     
-    /// Builds ForgotPasswordView
-    func presentSheet(with coordinator: LoginCoordinator) -> some View {
-        ForgotPasswordView(coordinator: coordinator, viewModel: viewModel)
+    func presentSheet(with coordinator: LoginCoordinator) -> AnyView {
+        AnyView(ForgotPasswordView(coordinator: coordinator, viewModel: viewModel))
     }
     
-    /// Builds TermsAndConditionsView
-    func presentFullScreenCover(with coordinator: LoginCoordinator) -> some View {
-        TermsAndConditionsView(coordinator: coordinator)
+    func presentFullScreenCover(with coordinator: LoginCoordinator) -> AnyView {
+        AnyView(TermsAndConditionsView(coordinator: coordinator))
     }
 }
