@@ -1,10 +1,9 @@
 import SwiftUI
 
 protocol LoginInjectorProtocol {
-    func buildLogin(with coordinator: LoginCoordinator) -> AnyView
-    func buildRegister(with coordinator: LoginCoordinator) -> AnyView
-    func presentSheet(with coordinator: LoginCoordinator) -> AnyView
-    func presentFullScreenCover(with coordinator: LoginCoordinator) -> AnyView
+    func inject(coordinator: LoginCoordinator, for view: AppView) -> AnyView
+    func inject(coordinator: LoginCoordinator, for sheet: Sheet) -> AnyView
+    func inject(coordinator: LoginCoordinator, for fullScreenCover: FullScreenCover) -> AnyView
 }
 
 final class LoginInjector: LoginInjectorProtocol {
@@ -19,19 +18,23 @@ final class LoginInjector: LoginInjectorProtocol {
         LoginViewModel(loginUseCase: useCase)
     }()
     
-    func buildLogin(with coordinator: LoginCoordinator) -> AnyView {
-        AnyView(LoginView(coordinator: coordinator, viewModel: viewModel))
+    func inject(coordinator: LoginCoordinator, for view: AppView) -> AnyView {
+        switch view {
+        case .login: return AnyView(LoginView(coordinator: coordinator, viewModel: viewModel))
+        case .register: return AnyView(RegisterView(coordinator: coordinator, viewModel: viewModel))
+        default: fatalError("LoginInjector - Unsupported view type: \(view)")
+        }
     }
     
-    func buildRegister(with coordinator: LoginCoordinator) -> AnyView {
-        AnyView(RegisterView(coordinator: coordinator, viewModel: viewModel))
+    func inject(coordinator: LoginCoordinator, for sheet: Sheet) -> AnyView {
+        switch sheet {
+        case .forgotPassword: return AnyView(ForgotPasswordView(coordinator: coordinator, viewModel: viewModel))
+        }
     }
     
-    func presentSheet(with coordinator: LoginCoordinator) -> AnyView {
-        AnyView(ForgotPasswordView(coordinator: coordinator, viewModel: viewModel))
-    }
-    
-    func presentFullScreenCover(with coordinator: LoginCoordinator) -> AnyView {
-        AnyView(TermsAndConditionsView(coordinator: coordinator))
+    func inject(coordinator: LoginCoordinator, for fullScreenCover: FullScreenCover) -> AnyView {
+        switch fullScreenCover {
+        case .termsAndConditions: return AnyView(TermsAndConditionsView(coordinator: coordinator))
+        }
     }
 }

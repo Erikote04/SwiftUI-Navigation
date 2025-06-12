@@ -9,27 +9,21 @@ import SwiftUI
 @testable import Navigation
 
 final class MissionInjectorMock: MissionInjectorProtocol {
-    var buildMissionCallCount = 0
-    var buildMissionDetailCallCount = 0
-    var buildAstronautDetailCallCount = 0
+    var injectMissionCallCount = 0
+    var injectMissionDetailCallCount = 0
+    var injectAstronautDetailCallCount = 0
     
     var mission: Mission?
     var astronaut: Astronaut?
     
-    func build(with coordinator: MissionCoordinator) -> AnyView {
-        buildMissionCallCount += 1
-        return AnyView(EmptyView())
-    }
-    
-    func buildMissionDetail(with coordinator: MissionCoordinator, for mission: Mission) -> AnyView {
-        buildMissionDetailCallCount += 1
-        self.mission = mission
-        return AnyView(EmptyView())
-    }
-    
-    func buildAstronautDetail(for astronaut: Astronaut) -> AnyView {
-        buildAstronautDetailCallCount += 1
-        self.astronaut = astronaut
+    func inject(coordinator: MissionCoordinator, in view: AppView) -> AnyView {
+        switch view {
+        case .missions: injectMissionCallCount += 1
+        case .missionDetail(let mission): injectMissionDetailCallCount += 1; self.mission = mission
+        case .astronautDetail(let astronaut): injectAstronautDetailCallCount += 1; self.astronaut = astronaut
+        default: break
+        }
+        
         return AnyView(EmptyView())
     }
 }

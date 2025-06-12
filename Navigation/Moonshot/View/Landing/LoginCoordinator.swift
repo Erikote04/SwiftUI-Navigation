@@ -25,17 +25,21 @@ class LoginCoordinator: BaseCoordinator {
     
     @ViewBuilder func build(_ view: AppView) -> some View {
         switch view {
-        case .login: injector.buildLogin(with: self)
-        case .register: injector.buildRegister(with: self)
-        default: EmptyView()
+        case .login: injector.inject(coordinator: self, for: view)
+        case .register: injector.inject(coordinator: self, for: view)
+        default: fatalError("LoginCoordinator - Unsupported view: \(view)")
         }
     }
     
     @ViewBuilder func build(_ sheet: Sheet) -> some View {
-        switch sheet { case .forgotPassword: injector.presentSheet(with: self) }
+        switch sheet {
+        case .forgotPassword: injector.inject(coordinator: self, for: sheet)
+        }
     }
     
     @ViewBuilder func build(_ fullScreenCover: FullScreenCover) -> some View {
-        switch fullScreenCover { case .termsAndConditions: injector.presentFullScreenCover(with: self) }
+        switch fullScreenCover {
+        case .termsAndConditions: injector.inject(coordinator: self, for: fullScreenCover)
+        }
     }
 }

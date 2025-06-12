@@ -25,9 +25,9 @@ class AstronautCoordinator: BaseCoordinator {
     
     @ViewBuilder func build(_ view: AppView) -> some View {
         switch view {
-        case .astronauts: injector.build(with: self)
-        case .astronautDetail(let astronaut): injector.buildAstronautDetail(for: astronaut)
-        default: EmptyView()
+        case .astronauts: injector.inject(coordinator: self, for: view)
+        case .astronautDetail(let astronaut): injector.inject(coordinator: self, for: view)
+        default: fatalError("AstronautCoordinator - Unsupported view: \(view)")
         }
     }
 }

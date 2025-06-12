@@ -42,7 +42,7 @@ struct MissionCoordinatorTest {
         let coordinator = MissionCoordinator(injector: injector)
         let _ = coordinator.build(.missions)
         
-        #expect(injector.buildMissionCallCount == 1)
+        #expect(injector.injectMissionCallCount == 1)
     }
     
     @Test("Builds mission detail view")
@@ -50,7 +50,7 @@ struct MissionCoordinatorTest {
         let coordinator = MissionCoordinator(injector: injector)
         let _ = coordinator.build(.missionDetail(.sample))
         
-        #expect(injector.buildMissionDetailCallCount == 1)
+        #expect(injector.injectMissionDetailCallCount == 1)
     }
     
     @Test("Builds astronaut detail view")
@@ -58,7 +58,7 @@ struct MissionCoordinatorTest {
         let coordinator = MissionCoordinator(injector: injector)
         let _ = coordinator.build(.astronautDetail(.sample))
         
-        #expect(injector.buildAstronautDetailCallCount == 1)
+        #expect(injector.injectAstronautDetailCallCount == 1)
     }
     
     @Test("Build unknown view doesn't call builder", arguments: [
@@ -71,9 +71,9 @@ struct MissionCoordinatorTest {
         let coordinator = MissionCoordinator(injector: injector)
         let _ = coordinator.build(view)
         
-        #expect(injector.buildMissionCallCount == 0)
-        #expect(injector.buildMissionDetailCallCount == 0)
-        #expect(injector.buildAstronautDetailCallCount == 0)
+        #expect(injector.injectMissionCallCount == 0)
+        #expect(injector.injectMissionDetailCallCount == 0)
+        #expect(injector.injectAstronautDetailCallCount == 0)
     }
     
     @Test("Push known view updates path", arguments: [

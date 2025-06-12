@@ -1,9 +1,7 @@
 import SwiftUI
 
 protocol MissionInjectorProtocol {
-    func build(with coordinator: MissionCoordinator) -> AnyView
-    func buildMissionDetail(with coordinator: MissionCoordinator, for mission: Mission) -> AnyView
-    func buildAstronautDetail(for astronaut: Astronaut) -> AnyView
+    func inject(coordinator: MissionCoordinator, in view: AppView) -> AnyView
 }
 
 final class MissionInjector: MissionInjectorProtocol {
@@ -20,15 +18,12 @@ final class MissionInjector: MissionInjectorProtocol {
         MissionViewModel(missionUseCase: missionUseCase, astronautUseCase: astronautUseCase)
     }()
     
-    func build(with coordinator: MissionCoordinator) -> AnyView {
-        AnyView(MissionsView(coordinator: coordinator, viewModel: viewModel))
-    }
-    
-    func buildMissionDetail(with coordinator: MissionCoordinator, for mission: Mission) -> AnyView {
-        AnyView(MissionDetailView(coordinator: coordinator, viewModel: viewModel, mission: mission))
-    }
-    
-    func buildAstronautDetail(for astronaut: Astronaut) -> AnyView {
-        AnyView(AstronautDetailView(astronaut: astronaut))
+    func inject(coordinator: MissionCoordinator, in view: AppView) -> AnyView {
+        switch view {
+        case .missions: AnyView(MissionsView(coordinator: coordinator, viewModel: viewModel))
+        case .missionDetail(let mission): AnyView(MissionDetailView(coordinator: coordinator, viewModel: viewModel, mission: mission))
+        case .astronautDetail(let astronaut): AnyView(AstronautDetailView(astronaut: astronaut))
+        default: fatalError("MissionInjector - Unsupported view type: \(view)")
+        }
     }
 }

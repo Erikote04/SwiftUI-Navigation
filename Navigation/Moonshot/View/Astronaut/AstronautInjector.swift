@@ -1,8 +1,7 @@
 import SwiftUI
 
 protocol AstronautInjectorProtocol {
-    func build(with coordinator: AstronautCoordinator) -> AnyView
-    func buildAstronautDetail(for astronaut: Astronaut) -> AnyView
+    func inject(coordinator: AstronautCoordinator, for view: AppView) -> AnyView
 }
 
 final class AstronautInjector: AstronautInjectorProtocol {
@@ -17,11 +16,11 @@ final class AstronautInjector: AstronautInjectorProtocol {
         AstronautViewModel(astronautsUseCase: useCase)
     }()
     
-    func build(with coordinator: AstronautCoordinator) -> AnyView {
-        AnyView(AstronautsView(coordinator: coordinator, viewModel: viewModel))
-    }
-    
-    func buildAstronautDetail(for astronaut: Astronaut) -> AnyView {
-        AnyView(AstronautDetailView(astronaut: astronaut))
+    func inject(coordinator: AstronautCoordinator, for view: AppView) -> AnyView {
+        switch view {
+        case .astronauts: return AnyView(AstronautsView(coordinator: coordinator, viewModel: viewModel))
+        case .astronautDetail(let astronaut): return AnyView(AstronautDetailView(astronaut: astronaut))
+        default: fatalError("AstronautInjector - Unsupported view type: \(view)")
+        }
     }
 }

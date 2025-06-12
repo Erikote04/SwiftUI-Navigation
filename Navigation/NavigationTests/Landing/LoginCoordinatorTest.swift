@@ -39,7 +39,7 @@ struct LoginCoordinatorTest {
         let coordinator = LoginCoordinator(injector: injector)
         let _ = coordinator.build(.login)
         
-        #expect(injector.buildLoginCallCount == 1)
+        #expect(injector.injectLoginCallCount == 1)
     }
 
     @Test("Builds register view")
@@ -47,7 +47,7 @@ struct LoginCoordinatorTest {
         let coordinator = LoginCoordinator(injector: injector)
         let _ = coordinator.build(.register)
         
-        #expect(injector.buildRegisterCallCount == 1)
+        #expect(injector.injectRegisterCallCount == 1)
     }
     
     @Test("Builds forgot password view")
@@ -55,7 +55,7 @@ struct LoginCoordinatorTest {
         let coordinator = LoginCoordinator(injector: injector)
         let _ = coordinator.build(.forgotPassword)
         
-        #expect(injector.presentSheetCallCount == 1)
+        #expect(injector.injectForgotPasswordCallCount == 1)
     }
     
     @Test("Builds terms and conditions view")
@@ -63,7 +63,7 @@ struct LoginCoordinatorTest {
         let coordinator = LoginCoordinator(injector: injector)
         let _ = coordinator.build(.termsAndConditions)
         
-        #expect(injector.presentFullScreenCoverCallCount == 1)
+        #expect(injector.injectTermsAndConditions == 1)
     }
     
     @Test("Presents and dismisses sheet")
@@ -103,8 +103,8 @@ struct LoginCoordinatorTest {
         let coordinator = LoginCoordinator(injector: injector)
         let _ = coordinator.build(view)
         
-        #expect(injector.buildLoginCallCount == 0)
-        #expect(injector.buildRegisterCallCount == 0)
+        #expect(injector.injectLoginCallCount == 0)
+        #expect(injector.injectRegisterCallCount == 0)
     }
     
     @Test("Push known view updates path", arguments: [
