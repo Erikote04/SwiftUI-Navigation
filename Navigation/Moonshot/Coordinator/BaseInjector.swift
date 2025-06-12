@@ -1,10 +1,3 @@
-//
-//  BaseInjector.swift
-//  Navigation
-//
-//  Created by Erik Sebastian de Erice Jerez on 12/6/25.
-//
-
 import SwiftUI
 
 protocol BaseInjectorProtocol {
@@ -24,7 +17,6 @@ extension BaseInjectorProtocol {
 }
 
 class BaseInjector: BaseInjectorProtocol {
-    
     func inject(coordinator: BaseCoordinatorProtocol, in view: AppView) -> AnyView {
         fatalError("BaseInjector - inject(coordinator:for:) must be overridden by subclass")
     }

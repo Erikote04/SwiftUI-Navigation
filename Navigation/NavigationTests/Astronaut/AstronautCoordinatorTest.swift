@@ -1,16 +1,9 @@
-//
-//  AstronautCoordinatorTest.swift
-//  NavigationTests
-//
-//  Created by Erik Sebastian de Erice Jerez on 11/6/25.
-//
-
 import Testing
 @testable import Navigation
 
 @Suite("AstronautCoordinator", .tags(.coordinator, .astronautCoordinator))
 struct AstronautCoordinatorTest {
-
+    
     private let injector = AstronautInjectorMock()
     
     @Test("Can handle known views", arguments: [
@@ -21,7 +14,7 @@ struct AstronautCoordinatorTest {
         let coordinator = AstronautCoordinator(injector: injector)
         #expect(coordinator.canHandle(view: view) == true)
     }
-
+    
     @Test("Can't handle unknown views", arguments: [
         AppView.login,
         AppView.missionDetail(Mission.sample),

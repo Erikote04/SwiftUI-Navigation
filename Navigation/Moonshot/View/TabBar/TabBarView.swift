@@ -60,7 +60,3 @@ private extension TabBarView {
         .tag(tabItem)
     }
 }
-
-#Preview {
-    TabBarView(coordinator: TabBarCoordinator(), missionCoordinator: MissionCoordinator(), astronautCoordinator: AstronautCoordinator(), loginCoordinator: LoginCoordinator())
-}

@@ -1,16 +1,9 @@
-//
-//  LoginCoordinatorTest.swift
-//  NavigationTests
-//
-//  Created by Erik Sebastian de Erice Jerez on 12/6/25.
-//
-
 import Testing
 @testable import Navigation
 
 @Suite("LoginCoordinator", .tags(.coordinator, .loginCoordinator))
 struct LoginCoordinatorTest {
-
+    
     private let injector = LoginInjectorMock()
     
     @Test("Can handle known views", arguments: [
@@ -41,7 +34,7 @@ struct LoginCoordinatorTest {
         
         #expect(injector.injectLoginCallCount == 1)
     }
-
+    
     @Test("Builds register view")
     func buildsRegisterView() {
         let coordinator = LoginCoordinator(injector: injector)

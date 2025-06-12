@@ -3,7 +3,7 @@ import Testing
 
 @Suite("AstronautUseCase", .tags(.useCase, .astronautUseCase))
 struct AstronautUseCaseTest {
-
+    
     @Test func getAstronauts() async throws {
         let useCase = AstronautUseCase()
         let astronauts = try #require(await useCase.getAstronauts())

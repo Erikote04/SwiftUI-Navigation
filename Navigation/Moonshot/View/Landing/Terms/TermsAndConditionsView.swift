@@ -8,13 +8,13 @@ struct TermsAndConditionsView: View {
             Text("Terms and Conditions")
                 .font(.largeTitle)
             
-            Button("Accept") { coordinator.dismissFullScreenCover() }
+            Button("Accept") {
+                coordinator.dismissFullScreenCover()
+            }
             
-            Button("Back to Login") { coordinator.popToRoot() }
+            Button("Back to Login") {
+                coordinator.popToRoot()
+            }
         }
     }
-}
-
-#Preview {
-    TermsAndConditionsView(coordinator: LoginCoordinator())
 }

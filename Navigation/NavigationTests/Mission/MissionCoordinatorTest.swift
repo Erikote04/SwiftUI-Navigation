@@ -1,10 +1,3 @@
-//
-//  MissionCoordinatorTest.swift
-//  NavigationTests
-//
-//  Created by Erik Sebastian de Erice Jerez on 4/6/25.
-//
-
 import SwiftUI
 import Testing
 @testable import Navigation
@@ -149,7 +142,7 @@ struct MissionCoordinatorTest {
     @Test("Navigation flow works")
     func navigationFlowWorks() {
         let coordinator = MissionCoordinator(injector: injector)
-
+        
         coordinator.push(.missions)
         #expect(coordinator.path.count == 1)
         

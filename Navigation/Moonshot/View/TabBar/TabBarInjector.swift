@@ -6,7 +6,7 @@ protocol TabBarInjectorProtocol: BaseInjectorProtocol {
      */
 }
 
-class TabBarInjector: BaseInjectorProtocol {
+final class TabBarInjector: BaseInjectorProtocol {
     func inject(coordinator: any BaseCoordinatorProtocol, in view: AppView) -> AnyView {
         guard let coordinator = coordinator as? TabBarCoordinator else {
             fatalError("TabBarInjector requires TabBarCoordinator")

@@ -14,7 +14,7 @@ enum TabItem {
     }
 }
 
-class TabBarCoordinator: BaseCoordinator {
+final class TabBarCoordinator: BaseCoordinator {
     @Published var selectedTab: TabItem = .missions
     
     let tabs: [TabItem] = [.missions, .astronauts, .login]

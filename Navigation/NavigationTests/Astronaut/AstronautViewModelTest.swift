@@ -3,7 +3,7 @@ import Testing
 
 @Suite("AstronautViewModel", .tags(.viewModel, .astronautViewModel))
 struct AstronautViewModelTest {
-
+    
     let viewModel = AstronautViewModel()
     
     @Test func getAstronauts() async throws {

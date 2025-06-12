@@ -19,10 +19,3 @@ struct AstronautDetailView: View {
         .background(.darkBackground)
     }
 }
-
-#Preview {
-    let astronauts: [String: Astronaut] = Bundle.main.decode("astronauts.json")
-    
-    AstronautDetailView(astronaut: astronauts["aldrin"]!)
-        .preferredColorScheme(.dark)
-}

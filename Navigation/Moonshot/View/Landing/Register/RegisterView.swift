@@ -9,17 +9,17 @@ struct RegisterView: View {
             Text("Register")
                 .font(.largeTitle.bold())
             
-            Button("Terms and Conditions") { coordinator.presentFullScreenCover(.termsAndConditions) }
+            Button("Terms and Conditions") {
+                coordinator.presentFullScreenCover(.termsAndConditions)
+            }
             
             Button {
                 viewModel.register()
                 coordinator.pop()
-            } label: { Text("Register").foregroundStyle(.black) }
-                .buttonStyle(.borderedProminent)
+            } label: {
+                Text("Register").foregroundStyle(.black)
+            }
+            .buttonStyle(.borderedProminent)
         }
     }
-}
-
-#Preview {
-    RegisterView(coordinator: LoginCoordinator(), viewModel: LoginViewModel())
 }

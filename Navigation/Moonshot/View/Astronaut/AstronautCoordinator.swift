@@ -1,6 +1,6 @@
 import SwiftUI
 
-class AstronautCoordinator: BaseCoordinator {
+final class AstronautCoordinator: BaseCoordinator {
     
     private let injector: AstronautInjectorProtocol
     

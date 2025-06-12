@@ -18,10 +18,6 @@ struct AstronautsView: View {
         .preferredColorScheme(.dark)
         .onAppear {
             viewModel.onAppear()
-        }        
+        }
     }
-}
-
-#Preview {
-    AstronautsView(coordinator: AstronautCoordinator(), viewModel: AstronautViewModel())
 }

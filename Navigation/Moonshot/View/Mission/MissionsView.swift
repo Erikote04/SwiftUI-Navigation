@@ -24,7 +24,3 @@ struct MissionsView: View {
         }
     }
 }
-
-#Preview {
-    MissionsView(coordinator: MissionCoordinator(), viewModel: MissionViewModel())
-}

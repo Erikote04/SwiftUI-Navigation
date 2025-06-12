@@ -1,10 +1,3 @@
-//
-//  MissionBuilderMock.swift
-//  NavigationTests
-//
-//  Created by Erik Sebastian de Erice Jerez on 4/6/25.
-//
-
 import SwiftUI
 @testable import Navigation
 

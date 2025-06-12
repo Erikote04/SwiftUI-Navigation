@@ -31,8 +31,3 @@ struct MissionGridCellView: View {
         )
     }
 }
-
-#Preview {
-    let missions: [Mission] = Bundle.main.decode("missions.json")
-    MissionGridCellView(mission: missions[0])
-}

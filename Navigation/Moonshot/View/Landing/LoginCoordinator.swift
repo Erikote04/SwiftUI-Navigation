@@ -1,6 +1,6 @@
 import SwiftUI
 
-class LoginCoordinator: BaseCoordinator {
+final class LoginCoordinator: BaseCoordinator {
     
     private let injector: LoginInjectorProtocol
     

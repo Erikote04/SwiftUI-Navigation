@@ -12,12 +12,10 @@ struct ForgotPasswordView: View {
             Button {
                 viewModel.forgotPassword()
                 coordinator.dismissSheet()
-            } label: { Text("Confirm").foregroundStyle(.black) }
-                .buttonStyle(.borderedProminent)
+            } label: {
+                Text("Confirm").foregroundStyle(.black)
+            }
+            .buttonStyle(.borderedProminent)
         }
     }
-}
-
-#Preview {
-    ForgotPasswordView(coordinator: LoginCoordinator(), viewModel: LoginViewModel())
 }

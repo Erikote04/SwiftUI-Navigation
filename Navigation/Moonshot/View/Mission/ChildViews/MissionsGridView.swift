@@ -2,6 +2,7 @@ import SwiftUI
 
 struct MissionsGridView: View {
     @ObservedObject var coordinator: MissionCoordinator
+    
     let missions: [Mission]
     
     let columns = [
@@ -19,9 +20,4 @@ struct MissionsGridView: View {
             .padding([.horizontal, .bottom])
         }
     }
-}
-
-#Preview {
-    let missions: [Mission] = Bundle.main.decode("missions.json")
-    MissionsGridView(coordinator: MissionCoordinator(), missions: missions)
 }

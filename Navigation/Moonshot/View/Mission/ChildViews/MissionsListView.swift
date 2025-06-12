@@ -2,6 +2,7 @@ import SwiftUI
 
 struct MissionsListView: View {
     @ObservedObject var coordinator: MissionCoordinator
+    
     let missions: [Mission]
     
     var body: some View {
@@ -14,9 +15,4 @@ struct MissionsListView: View {
         }
         .listStyle(.plain)
     }
-}
-
-#Preview {
-    let missions: [Mission] = Bundle.main.decode("missions.json")
-    MissionsListView(coordinator: MissionCoordinator(), missions: missions)
 }

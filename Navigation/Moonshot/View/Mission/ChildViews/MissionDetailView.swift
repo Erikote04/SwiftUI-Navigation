@@ -90,10 +90,3 @@ private struct MissionDetails: View {
         .padding(.horizontal)
     }
 }
-
-#Preview {
-    let missions: [Mission] = Bundle.main.decode("missions.json")
-    
-    MissionDetailView(coordinator: MissionCoordinator(), viewModel: MissionViewModel(), mission: missions[0])
-        .preferredColorScheme(.dark)
-}

@@ -1,10 +1,3 @@
-//
-//  AstronautBuilderMock.swift
-//  NavigationTests
-//
-//  Created by Erik Sebastian de Erice Jerez on 11/6/25.
-//
-
 import SwiftUI
 @testable import Navigation
 

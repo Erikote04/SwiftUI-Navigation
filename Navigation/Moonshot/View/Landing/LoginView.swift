@@ -20,7 +20,3 @@ struct LoginView: View {
         }
     }
 }
-
-#Preview {
-    LoginView(coordinator: LoginCoordinator(), viewModel: LoginViewModel())
-}
