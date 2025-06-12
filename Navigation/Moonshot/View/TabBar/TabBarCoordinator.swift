@@ -14,11 +14,12 @@ enum TabItem {
     }
 }
 
-final class TabBarCoordinator: BaseCoordinator {
+class TabBarCoordinator: BaseCoordinator {
     @Published var selectedTab: TabItem = .missions
+    
     let tabs: [TabItem] = [.missions, .astronauts, .login]
     
-    private let tabBarBuilder: TabBarBuilder = TabBarBuilder()
+    private let injector: TabBarInjector = TabBarInjector()
     
     private lazy var missionCoordinator = MissionCoordinator()
     private lazy var astronautCoordinator = AstronautCoordinator()
@@ -45,9 +46,8 @@ final class TabBarCoordinator: BaseCoordinator {
     
     @ViewBuilder func build(_ view: AppView) -> some View {
         switch view {
-        case .tabBar: tabBarBuilder.build(with: self)
-        default:
-            EmptyView()
+        case .tabBar: injector.inject(coordinator: self, in: view)
+        default: EmptyView()
         }
     }
 }
