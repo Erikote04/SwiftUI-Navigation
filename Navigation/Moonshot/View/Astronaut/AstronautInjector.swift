@@ -1,11 +1,11 @@
 import SwiftUI
 
-protocol AstronautBuilderProtocol {
+protocol AstronautInjectorProtocol {
     func build(with coordinator: AstronautCoordinator) -> AnyView
     func buildAstronautDetail(for astronaut: Astronaut) -> AnyView
 }
 
-final class AstronautBuilder: AstronautBuilderProtocol {
+final class AstronautInjector: AstronautInjectorProtocol {
     
     private let useCase: AstronautUseCaseProtocol
     

@@ -8,7 +8,7 @@
 import SwiftUI
 @testable import Navigation
 
-final class MissionBuilderMock: MissionBuilderProtocol {
+final class MissionInjectorMock: MissionInjectorProtocol {
     var buildMissionCallCount = 0
     var buildMissionDetailCallCount = 0
     var buildAstronautDetailCallCount = 0

@@ -2,18 +2,18 @@ import SwiftUI
 
 class AstronautCoordinator: BaseCoordinator {
     
-    private let builder: AstronautBuilderProtocol
+    private let injector: AstronautInjectorProtocol
     
-    init(builder: AstronautBuilderProtocol) {
-        self.builder = builder
+    init(injector: AstronautInjectorProtocol) {
+        self.injector = injector
         super.init()
     }
     
     convenience override init() {
         let useCase: AstronautUseCaseProtocol = UseCaseContainer.shared.getCurrentUseCase()
-        let builder = AstronautBuilder(useCase: useCase)
+        let injector = AstronautInjector(useCase: useCase)
         
-        self.init(builder: builder)
+        self.init(injector: injector)
     }
     
     override func canHandle(view: AppView) -> Bool {
@@ -25,8 +25,8 @@ class AstronautCoordinator: BaseCoordinator {
     
     @ViewBuilder func build(_ view: AppView) -> some View {
         switch view {
-        case .astronauts: builder.build(with: self)
-        case .astronautDetail(let astronaut): builder.buildAstronautDetail(for: astronaut)
+        case .astronauts: injector.build(with: self)
+        case .astronautDetail(let astronaut): injector.buildAstronautDetail(for: astronaut)
         default: EmptyView()
         }
     }

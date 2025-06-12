@@ -12,7 +12,7 @@ import Testing
 @Suite("MissionCoordinator", .tags(.coordinator, .missionCoordinator))
 struct MissionCoordinatorTest {
     
-    private let builder = MissionBuilderMock()
+    private let injector = MissionInjectorMock()
     
     @Test("Can handle known views", arguments: [
         AppView.missions,
@@ -20,7 +20,7 @@ struct MissionCoordinatorTest {
         AppView.astronautDetail(Astronaut.sample)
     ])
     func canHandleKnownViews(view: AppView) {
-        let coordinator = MissionCoordinator(builder: builder)
+        let coordinator = MissionCoordinator(injector: injector)
         
         #expect(coordinator.canHandle(view: view) == true)
     }
@@ -32,33 +32,33 @@ struct MissionCoordinatorTest {
         AppView.tabBar
     ])
     func cantHandleUnknownViews(view: AppView) {
-        let coordinator = MissionCoordinator(builder: builder)
+        let coordinator = MissionCoordinator(injector: injector)
         
         #expect(coordinator.canHandle(view: view) == false)
     }
     
     @Test("Builds missions view")
     func buildsMissionsView() {
-        let coordinator = MissionCoordinator(builder: builder)
+        let coordinator = MissionCoordinator(injector: injector)
         let _ = coordinator.build(.missions)
         
-        #expect(builder.buildMissionCallCount == 1)
+        #expect(injector.buildMissionCallCount == 1)
     }
     
     @Test("Builds mission detail view")
     func buildsMissionDetailView() {
-        let coordinator = MissionCoordinator(builder: builder)
+        let coordinator = MissionCoordinator(injector: injector)
         let _ = coordinator.build(.missionDetail(.sample))
         
-        #expect(builder.buildMissionDetailCallCount == 1)
+        #expect(injector.buildMissionDetailCallCount == 1)
     }
     
     @Test("Builds astronaut detail view")
     func buildsAstronautDetailView() {
-        let coordinator = MissionCoordinator(builder: builder)
+        let coordinator = MissionCoordinator(injector: injector)
         let _ = coordinator.build(.astronautDetail(.sample))
         
-        #expect(builder.buildAstronautDetailCallCount == 1)
+        #expect(injector.buildAstronautDetailCallCount == 1)
     }
     
     @Test("Build unknown view doesn't call builder", arguments: [
@@ -68,12 +68,12 @@ struct MissionCoordinatorTest {
         AppView.tabBar,
     ])
     func buildUnknownDoesntCallBuilder(view: AppView) {
-        let coordinator = MissionCoordinator(builder: builder)
+        let coordinator = MissionCoordinator(injector: injector)
         let _ = coordinator.build(view)
         
-        #expect(builder.buildMissionCallCount == 0)
-        #expect(builder.buildMissionDetailCallCount == 0)
-        #expect(builder.buildAstronautDetailCallCount == 0)
+        #expect(injector.buildMissionCallCount == 0)
+        #expect(injector.buildMissionDetailCallCount == 0)
+        #expect(injector.buildAstronautDetailCallCount == 0)
     }
     
     @Test("Push known view updates path", arguments: [
@@ -82,7 +82,7 @@ struct MissionCoordinatorTest {
         AppView.astronautDetail(Astronaut.sample),
     ])
     func pushKnownViewUpdatesPath(view: AppView) {
-        let coordinator = MissionCoordinator(builder: builder)
+        let coordinator = MissionCoordinator(injector: injector)
         let initialCount = coordinator.path.count
         
         coordinator.push(view)
@@ -97,7 +97,7 @@ struct MissionCoordinatorTest {
         AppView.tabBar,
     ])
     func pushUnknownViewDoesntUpdatesPath(view: AppView) {
-        let coordinator = MissionCoordinator(builder: builder)
+        let coordinator = MissionCoordinator(injector: injector)
         
         coordinator.push(view)
         
@@ -106,7 +106,7 @@ struct MissionCoordinatorTest {
     
     @Test("Pop view decreases path count")
     func popViewDecreasesPathCount() {
-        let coordinator = MissionCoordinator(builder: builder)
+        let coordinator = MissionCoordinator(injector: injector)
         
         coordinator.push(.missions)
         #expect(coordinator.path.count == 1)
@@ -117,7 +117,7 @@ struct MissionCoordinatorTest {
     
     @Test("Pop on empty path does nothing")
     func popOnEmptyPathDoesNothing() {
-        let coordinator = MissionCoordinator(builder: builder)
+        let coordinator = MissionCoordinator(injector: injector)
         
         coordinator.pop()
         
@@ -126,7 +126,7 @@ struct MissionCoordinatorTest {
     
     @Test("Pop to root clears path")
     func popToRootClearsPath() {
-        let coordinator = MissionCoordinator(builder: builder)
+        let coordinator = MissionCoordinator(injector: injector)
         
         coordinator.push(.missions)
         #expect(coordinator.path.count == 1)
@@ -137,7 +137,7 @@ struct MissionCoordinatorTest {
     
     @Test("Pop to root on empty path does nothing")
     func popToRootOnEmptyPathDoesNothing() {
-        let coordinator = MissionCoordinator(builder: builder)
+        let coordinator = MissionCoordinator(injector: injector)
         
         coordinator.popToRoot()
         
@@ -146,7 +146,7 @@ struct MissionCoordinatorTest {
     
     @Test("Navigation flow works")
     func navigationFlowWorks() {
-        let coordinator = MissionCoordinator(builder: builder)
+        let coordinator = MissionCoordinator(injector: injector)
 
         coordinator.push(.missions)
         #expect(coordinator.path.count == 1)

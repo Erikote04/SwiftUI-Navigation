@@ -2,18 +2,18 @@ import SwiftUI
 
 class LoginCoordinator: BaseCoordinator {
     
-    private let builder: LoginBuilderProtocol
+    private let injector: LoginInjectorProtocol
     
-    init(builder: LoginBuilderProtocol) {
-        self.builder = builder
+    init(injector: LoginInjectorProtocol) {
+        self.injector = injector
         super.init()
     }
     
     convenience override init() {
         let useCase: LoginUseCaseProtocol = UseCaseContainer.shared.getCurrentUseCase()
-        let builder = LoginBuilder(useCase: useCase)
+        let injector = LoginInjector(useCase: useCase)
         
-        self.init(builder: builder)
+        self.init(injector: injector)
     }
     
     override func canHandle(view: AppView) -> Bool {
@@ -25,17 +25,17 @@ class LoginCoordinator: BaseCoordinator {
     
     @ViewBuilder func build(_ view: AppView) -> some View {
         switch view {
-        case .login: builder.buildLogin(with: self)
-        case .register: builder.buildRegister(with: self)
+        case .login: injector.buildLogin(with: self)
+        case .register: injector.buildRegister(with: self)
         default: EmptyView()
         }
     }
     
     @ViewBuilder func build(_ sheet: Sheet) -> some View {
-        switch sheet { case .forgotPassword: builder.presentSheet(with: self) }
+        switch sheet { case .forgotPassword: injector.presentSheet(with: self) }
     }
     
     @ViewBuilder func build(_ fullScreenCover: FullScreenCover) -> some View {
-        switch fullScreenCover { case .termsAndConditions: builder.presentFullScreenCover(with: self) }
+        switch fullScreenCover { case .termsAndConditions: injector.presentFullScreenCover(with: self) }
     }
 }

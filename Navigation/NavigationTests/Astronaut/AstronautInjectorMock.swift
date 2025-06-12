@@ -8,7 +8,7 @@
 import SwiftUI
 @testable import Navigation
 
-final class AstronautBuilderMock: AstronautBuilderProtocol {
+final class AstronautInjectorMock: AstronautInjectorProtocol {
     var buildAstronautCallCount = 0
     var buildAstronautDetailCallCount = 0
     

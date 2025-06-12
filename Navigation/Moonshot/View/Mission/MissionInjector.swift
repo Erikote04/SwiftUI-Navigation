@@ -1,12 +1,12 @@
 import SwiftUI
 
-protocol MissionBuilderProtocol {
+protocol MissionInjectorProtocol {
     func build(with coordinator: MissionCoordinator) -> AnyView
     func buildMissionDetail(with coordinator: MissionCoordinator, for mission: Mission) -> AnyView
     func buildAstronautDetail(for astronaut: Astronaut) -> AnyView
 }
 
-final class MissionBuilder: MissionBuilderProtocol {
+final class MissionInjector: MissionInjectorProtocol {
     
     private let missionUseCase: MissionUseCaseProtocol
     private let astronautUseCase: AstronautUseCaseProtocol

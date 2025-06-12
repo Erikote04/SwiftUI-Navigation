@@ -1,13 +1,13 @@
 import SwiftUI
 
-protocol LoginBuilderProtocol {
+protocol LoginInjectorProtocol {
     func buildLogin(with coordinator: LoginCoordinator) -> AnyView
     func buildRegister(with coordinator: LoginCoordinator) -> AnyView
     func presentSheet(with coordinator: LoginCoordinator) -> AnyView
     func presentFullScreenCover(with coordinator: LoginCoordinator) -> AnyView
 }
 
-final class LoginBuilder: LoginBuilderProtocol {
+final class LoginInjector: LoginInjectorProtocol {
     
     private let useCase: LoginUseCaseProtocol
     

@@ -11,14 +11,14 @@ import Testing
 @Suite("LoginCoordinator", .tags(.coordinator, .loginCoordinator))
 struct LoginCoordinatorTest {
 
-    private let builder = LoginBuilderMock()
+    private let injector = LoginInjectorMock()
     
     @Test("Can handle known views", arguments: [
         AppView.login,
         AppView.register
     ])
     func canHandleKnownViews(view: AppView) {
-        let coordinator = LoginCoordinator(builder: builder)
+        let coordinator = LoginCoordinator(injector: injector)
         #expect(coordinator.canHandle(view: view) == true)
     }
     
@@ -30,45 +30,45 @@ struct LoginCoordinatorTest {
         AppView.tabBar,
     ])
     func cantHandleUnknownViews(view: AppView) {
-        let coordinator = LoginCoordinator(builder: builder)
+        let coordinator = LoginCoordinator(injector: injector)
         #expect(coordinator.canHandle(view: view) == false)
     }
     
     @Test("Builds login view")
     func buildsLoginView() {
-        let coordinator = LoginCoordinator(builder: builder)
+        let coordinator = LoginCoordinator(injector: injector)
         let _ = coordinator.build(.login)
         
-        #expect(builder.buildLoginCallCount == 1)
+        #expect(injector.buildLoginCallCount == 1)
     }
 
     @Test("Builds register view")
     func buildsRegisterView() {
-        let coordinator = LoginCoordinator(builder: builder)
+        let coordinator = LoginCoordinator(injector: injector)
         let _ = coordinator.build(.register)
         
-        #expect(builder.buildRegisterCallCount == 1)
+        #expect(injector.buildRegisterCallCount == 1)
     }
     
     @Test("Builds forgot password view")
     func buildsForgotPasswordView() {
-        let coordinator = LoginCoordinator(builder: builder)
+        let coordinator = LoginCoordinator(injector: injector)
         let _ = coordinator.build(.forgotPassword)
         
-        #expect(builder.presentSheetCallCount == 1)
+        #expect(injector.presentSheetCallCount == 1)
     }
     
     @Test("Builds terms and conditions view")
     func buildsTermsAndConditionsView() {
-        let coordinator = LoginCoordinator(builder: builder)
+        let coordinator = LoginCoordinator(injector: injector)
         let _ = coordinator.build(.termsAndConditions)
         
-        #expect(builder.presentFullScreenCoverCallCount == 1)
+        #expect(injector.presentFullScreenCoverCallCount == 1)
     }
     
     @Test("Presents and dismisses sheet")
     func presentsAndDismissesSheet() {
-        let coordinator = LoginCoordinator(builder: builder)
+        let coordinator = LoginCoordinator(injector: injector)
         
         #expect(coordinator.sheet == nil)
         
@@ -81,7 +81,7 @@ struct LoginCoordinatorTest {
     
     @Test("Presents and dismisses full screen cover")
     func presentsAndDismissesFullScreenCover() {
-        let coordinator = LoginCoordinator(builder: builder)
+        let coordinator = LoginCoordinator(injector: injector)
         
         #expect(coordinator.fullScreenCover == nil)
         
@@ -100,11 +100,11 @@ struct LoginCoordinatorTest {
         AppView.tabBar,
     ])
     func buildUnknownViewDoesntCallBuilder(view: AppView) {
-        let coordinator = LoginCoordinator(builder: builder)
+        let coordinator = LoginCoordinator(injector: injector)
         let _ = coordinator.build(view)
         
-        #expect(builder.buildLoginCallCount == 0)
-        #expect(builder.buildRegisterCallCount == 0)
+        #expect(injector.buildLoginCallCount == 0)
+        #expect(injector.buildRegisterCallCount == 0)
     }
     
     @Test("Push known view updates path", arguments: [
@@ -112,7 +112,7 @@ struct LoginCoordinatorTest {
         AppView.register
     ])
     func pushKnownViewUpdatesPath(view: AppView) {
-        let coordinator = LoginCoordinator(builder: builder)
+        let coordinator = LoginCoordinator(injector: injector)
         let initialCount = coordinator.path.count
         
         coordinator.push(view)
@@ -128,7 +128,7 @@ struct LoginCoordinatorTest {
         AppView.tabBar,
     ])
     func pushUnknownViewDoesntUpdatePath(view: AppView) {
-        let coordinator = LoginCoordinator(builder: builder)
+        let coordinator = LoginCoordinator(injector: injector)
         
         coordinator.push(view)
         
@@ -137,7 +137,7 @@ struct LoginCoordinatorTest {
     
     @Test("Pop view decreases path count")
     func popViewDecreasesPathCount() {
-        let coordinator = LoginCoordinator(builder: builder)
+        let coordinator = LoginCoordinator(injector: injector)
         
         coordinator.push(.register)
         #expect(coordinator.path.count == 1)
@@ -148,7 +148,7 @@ struct LoginCoordinatorTest {
     
     @Test("Pop on empty path does nothing")
     func popOnEmptyPathDoesNothing() {
-        let coordinator = LoginCoordinator(builder: builder)
+        let coordinator = LoginCoordinator(injector: injector)
         
         coordinator.pop()
         
@@ -157,7 +157,7 @@ struct LoginCoordinatorTest {
     
     @Test("Pop to root clears path")
     func popToRootClearsPath() {
-        let coordinator = LoginCoordinator(builder: builder)
+        let coordinator = LoginCoordinator(injector: injector)
         
         coordinator.push(.register)
         #expect(coordinator.path.count == 1)
@@ -168,7 +168,7 @@ struct LoginCoordinatorTest {
     
     @Test("Pop to root dissmisses sheet")
     func popToRootDismissesSheet() {
-        let coordinator = LoginCoordinator(builder: builder)
+        let coordinator = LoginCoordinator(injector: injector)
         
         coordinator.presentSheet(.forgotPassword)
         #expect(coordinator.sheet == .forgotPassword)
@@ -179,7 +179,7 @@ struct LoginCoordinatorTest {
     
     @Test("Pop to root dismisses full screen cover")
     func popToRootDismissesFullScreenCover() {
-        let coordinator = LoginCoordinator(builder: builder)
+        let coordinator = LoginCoordinator(injector: injector)
         
         coordinator.presentFullScreenCover(.termsAndConditions)
         #expect(coordinator.fullScreenCover == .termsAndConditions)
@@ -190,7 +190,7 @@ struct LoginCoordinatorTest {
     
     @Test("Pop to root on empty path does nothing")
     func popToRootOnEmptyPathDoesNothing() {
-        let coordinator = LoginCoordinator(builder: builder)
+        let coordinator = LoginCoordinator(injector: injector)
         
         coordinator.popToRoot()
         
@@ -199,7 +199,7 @@ struct LoginCoordinatorTest {
     
     @Test("Navigation flow works")
     func navigationFlowWorks() {
-        let coordinator = LoginCoordinator(builder: builder)
+        let coordinator = LoginCoordinator(injector: injector)
         
         _ = coordinator.build(.login)
         #expect(coordinator.path.count == 0)

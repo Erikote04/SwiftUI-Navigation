@@ -11,14 +11,14 @@ import Testing
 @Suite("AstronautCoordinator", .tags(.coordinator, .astronautCoordinator))
 struct AstronautCoordinatorTest {
 
-    private let builder = AstronautBuilderMock()
+    private let injector = AstronautInjectorMock()
     
     @Test("Can handle known views", arguments: [
         AppView.astronauts,
         AppView.astronautDetail(Astronaut.sample)
     ])
     func canHandleKnownViews(view: AppView) {
-        let coordinator = AstronautCoordinator(builder: builder)
+        let coordinator = AstronautCoordinator(injector: injector)
         #expect(coordinator.canHandle(view: view) == true)
     }
 
@@ -30,24 +30,24 @@ struct AstronautCoordinatorTest {
         AppView.tabBar,
     ])
     func cantHandleUnknownViews(view: AppView) {
-        let coordinator = AstronautCoordinator(builder: builder)
+        let coordinator = AstronautCoordinator(injector: injector)
         #expect(coordinator.canHandle(view: view) == false)
     }
     
     @Test("Builds astronauts view")
     func buildsAstronautsView() {
-        let coordinator = AstronautCoordinator(builder: builder)
+        let coordinator = AstronautCoordinator(injector: injector)
         let _ = coordinator.build(.astronauts)
         
-        #expect(builder.buildAstronautCallCount == 1)
+        #expect(injector.buildAstronautCallCount == 1)
     }
     
     @Test("Builds astronaut detail view")
     func buildsAstronautDetailView() {
-        let coordinator = AstronautCoordinator(builder: builder)
+        let coordinator = AstronautCoordinator(injector: injector)
         let _ = coordinator.build(.astronautDetail(Astronaut.sample))
         
-        #expect(builder.buildAstronautDetailCallCount == 1)
+        #expect(injector.buildAstronautDetailCallCount == 1)
     }
     
     @Test("Build unknown view doesn't call builder", arguments: [
@@ -58,11 +58,11 @@ struct AstronautCoordinatorTest {
         AppView.tabBar,
     ])
     func buildUnknownViewDoesntCallBuilder(view: AppView) {
-        let coordinator = AstronautCoordinator(builder: builder)
+        let coordinator = AstronautCoordinator(injector: injector)
         let _ = coordinator.build(view)
         
-        #expect(builder.buildAstronautCallCount == 0)
-        #expect(builder.buildAstronautDetailCallCount == 0)
+        #expect(injector.buildAstronautCallCount == 0)
+        #expect(injector.buildAstronautDetailCallCount == 0)
     }
     
     @Test("Push known view updates path", arguments: [
@@ -70,7 +70,7 @@ struct AstronautCoordinatorTest {
         AppView.astronautDetail(Astronaut.sample)
     ])
     func pushKnownViewUpdatesPath(view: AppView) {
-        let coordinator = AstronautCoordinator(builder: builder)
+        let coordinator = AstronautCoordinator(injector: injector)
         let initialCount = coordinator.path.count
         
         coordinator.push(.astronautDetail(Astronaut.sample))
@@ -86,7 +86,7 @@ struct AstronautCoordinatorTest {
         AppView.tabBar,
     ])
     func pushUnknownViewDoesntUpdatePath(view: AppView) {
-        let coordinator = AstronautCoordinator(builder: builder)
+        let coordinator = AstronautCoordinator(injector: injector)
         
         coordinator.push(view)
         
@@ -95,7 +95,7 @@ struct AstronautCoordinatorTest {
     
     @Test("Pop view decreases path count")
     func popViewDecreasesPathCount() {
-        let coordinator = AstronautCoordinator(builder: builder)
+        let coordinator = AstronautCoordinator(injector: injector)
         
         coordinator.push(.astronautDetail(Astronaut.sample))
         #expect(coordinator.path.count == 1)
@@ -106,7 +106,7 @@ struct AstronautCoordinatorTest {
     
     @Test("Pop on empty path does nothing")
     func popOnEmptyPathDoesNothing() {
-        let coordinator = AstronautCoordinator(builder: builder)
+        let coordinator = AstronautCoordinator(injector: injector)
         
         coordinator.pop()
         
@@ -115,7 +115,7 @@ struct AstronautCoordinatorTest {
     
     @Test("Pop to root clears path")
     func popToRootClearsPath() {
-        let coordinator = AstronautCoordinator(builder: builder)
+        let coordinator = AstronautCoordinator(injector: injector)
         
         coordinator.push(.astronauts)
         #expect(coordinator.path.count == 1)
@@ -126,7 +126,7 @@ struct AstronautCoordinatorTest {
     
     @Test("Pop to root on empty path does nothing")
     func popToRootOnEmptyPathDoesNothing() {
-        let coordinator = AstronautCoordinator(builder: builder)
+        let coordinator = AstronautCoordinator(injector: injector)
         
         coordinator.popToRoot()
         
@@ -135,7 +135,7 @@ struct AstronautCoordinatorTest {
     
     @Test("Navigation flow works")
     func navigationFlowWorks() {
-        let coordinator = AstronautCoordinator(builder: builder)
+        let coordinator = AstronautCoordinator(injector: injector)
         
         coordinator.push(.astronauts)
         #expect(coordinator.path.count == 1)

@@ -8,7 +8,7 @@
 import SwiftUI
 @testable import Navigation
 
-final class LoginBuilderMock: LoginBuilderProtocol {
+final class LoginInjectorMock: LoginInjectorProtocol {
     var buildLoginCallCount = 0
     var buildRegisterCallCount = 0
     var presentSheetCallCount = 0

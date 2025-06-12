@@ -2,19 +2,19 @@ import SwiftUI
 
 final class MissionCoordinator: BaseCoordinator {
     
-    private let builder: MissionBuilderProtocol
+    private let injector: MissionInjectorProtocol
     
-    init(builder: MissionBuilderProtocol) {
-        self.builder = builder
+    init(injector: MissionInjectorProtocol) {
+        self.injector = injector
         super.init()
     }
     
     convenience override init() {
         let missionUseCase: MissionUseCaseProtocol = UseCaseContainer.shared.getCurrentUseCase()
         let AstronautUseCase: AstronautUseCaseProtocol = UseCaseContainer.shared.getCurrentUseCase()
-        let builder = MissionBuilder(missionUseCase: missionUseCase, astronautUseCase: AstronautUseCase)
+        let injector = MissionInjector(missionUseCase: missionUseCase, astronautUseCase: AstronautUseCase)
         
-        self.init(builder: builder)
+        self.init(injector: injector)
     }
     
     override func canHandle(view: AppView) -> Bool {
@@ -26,9 +26,9 @@ final class MissionCoordinator: BaseCoordinator {
     
     @ViewBuilder func build(_ view: AppView) -> some View {
         switch view {
-        case .missions: builder.build(with: self)
-        case .missionDetail(let mission): builder.buildMissionDetail(with: self, for: mission)
-        case .astronautDetail(let astronaut): builder.buildAstronautDetail(for: astronaut)
+        case .missions: injector.build(with: self)
+        case .missionDetail(let mission): injector.buildMissionDetail(with: self, for: mission)
+        case .astronautDetail(let astronaut): injector.buildAstronautDetail(for: astronaut)
         default: EmptyView()
         }
     }
