@@ -14,7 +14,7 @@ final class AstronautBuilder: AstronautBuilderProtocol {
     }
     
     private(set) lazy var viewModel: AstronautViewModel = {
-        AstronautViewModel(astronautsUseCase: UseCaseContainer.shared.getCurrentUseCase())
+        AstronautViewModel(astronautsUseCase: useCase)
     }()
     
     func build(with coordinator: AstronautCoordinator) -> AnyView {
