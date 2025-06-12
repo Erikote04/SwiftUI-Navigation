@@ -14,7 +14,7 @@ final class LoginInjectorMock: LoginInjectorProtocol {
     var injectForgotPasswordCallCount = 0
     var injectTermsAndConditions = 0
     
-    func inject(coordinator: LoginCoordinator, for view: AppView) -> AnyView {
+    func inject(coordinator: any BaseCoordinatorProtocol, in view: AppView) -> AnyView {
         switch view {
         case .login: injectLoginCallCount += 1
         case .register: injectRegisterCallCount += 1
@@ -24,7 +24,7 @@ final class LoginInjectorMock: LoginInjectorProtocol {
         return AnyView(EmptyView())
     }
     
-    func inject(coordinator: LoginCoordinator, for sheet: Sheet) -> AnyView {
+    func inject(coordinator: any BaseCoordinatorProtocol, in sheet: Sheet) -> AnyView {
         switch sheet {
         case .forgotPassword: injectForgotPasswordCallCount += 1
         }
@@ -32,7 +32,7 @@ final class LoginInjectorMock: LoginInjectorProtocol {
         return AnyView(EmptyView())
     }
     
-    func inject(coordinator: LoginCoordinator, for fullScreenCover: FullScreenCover) -> AnyView {
+    func inject(coordinator: any BaseCoordinatorProtocol, in fullScreenCover: FullScreenCover) -> AnyView {
         switch fullScreenCover {
         case .termsAndConditions: injectTermsAndConditions += 1
         }

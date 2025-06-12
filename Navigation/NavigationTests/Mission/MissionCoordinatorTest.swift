@@ -51,6 +51,7 @@ struct MissionCoordinatorTest {
         let _ = coordinator.build(.missionDetail(.sample))
         
         #expect(injector.injectMissionDetailCallCount == 1)
+        #expect(injector.mission != nil)
     }
     
     @Test("Builds astronaut detail view")
@@ -59,6 +60,7 @@ struct MissionCoordinatorTest {
         let _ = coordinator.build(.astronautDetail(.sample))
         
         #expect(injector.injectAstronautDetailCallCount == 1)
+        #expect(injector.astronaut != nil)
     }
     
     @Test("Build unknown view doesn't call builder", arguments: [

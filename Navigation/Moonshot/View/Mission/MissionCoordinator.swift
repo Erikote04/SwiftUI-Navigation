@@ -29,7 +29,7 @@ final class MissionCoordinator: BaseCoordinator {
         case .missions: injector.inject(coordinator: self, in: view)
         case .missionDetail(_): injector.inject(coordinator: self, in: view)
         case .astronautDetail(_): injector.inject(coordinator: self, in: view)
-        default: fatalError("MissionCoordinator - Unsupported view: \(view)")
+        default: EmptyView()
         }
     }
 }

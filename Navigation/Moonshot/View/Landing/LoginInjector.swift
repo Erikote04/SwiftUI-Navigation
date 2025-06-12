@@ -1,9 +1,9 @@
 import SwiftUI
 
-protocol LoginInjectorProtocol {
-    func inject(coordinator: LoginCoordinator, for view: AppView) -> AnyView
-    func inject(coordinator: LoginCoordinator, for sheet: Sheet) -> AnyView
-    func inject(coordinator: LoginCoordinator, for fullScreenCover: FullScreenCover) -> AnyView
+protocol LoginInjectorProtocol: BaseInjectorProtocol {
+    /*
+     Add your specific methods for this protocol if necessary
+     */
 }
 
 final class LoginInjector: LoginInjectorProtocol {
@@ -18,7 +18,11 @@ final class LoginInjector: LoginInjectorProtocol {
         LoginViewModel(loginUseCase: useCase)
     }()
     
-    func inject(coordinator: LoginCoordinator, for view: AppView) -> AnyView {
+    func inject(coordinator: any BaseCoordinatorProtocol, in view: AppView) -> AnyView {
+        guard let coordinator = coordinator as? LoginCoordinator else {
+            fatalError("LoginInjector requires LoginCoordinator")
+        }
+        
         switch view {
         case .login: return AnyView(LoginView(coordinator: coordinator, viewModel: viewModel))
         case .register: return AnyView(RegisterView(coordinator: coordinator, viewModel: viewModel))
@@ -26,13 +30,21 @@ final class LoginInjector: LoginInjectorProtocol {
         }
     }
     
-    func inject(coordinator: LoginCoordinator, for sheet: Sheet) -> AnyView {
+    func inject(coordinator: any BaseCoordinatorProtocol, in sheet: Sheet) -> AnyView {
+        guard let coordinator = coordinator as? LoginCoordinator else {
+            fatalError("LoginInjector requires LoginCoordinator")
+        }
+        
         switch sheet {
         case .forgotPassword: return AnyView(ForgotPasswordView(coordinator: coordinator, viewModel: viewModel))
         }
     }
     
-    func inject(coordinator: LoginCoordinator, for fullScreenCover: FullScreenCover) -> AnyView {
+    func inject(coordinator: any BaseCoordinatorProtocol, in fullScreenCover: FullScreenCover) -> AnyView {
+        guard let coordinator = coordinator as? LoginCoordinator else {
+            fatalError("LoginInjector requires LoginCoordinator")
+        }
+        
         switch fullScreenCover {
         case .termsAndConditions: return AnyView(TermsAndConditionsView(coordinator: coordinator))
         }

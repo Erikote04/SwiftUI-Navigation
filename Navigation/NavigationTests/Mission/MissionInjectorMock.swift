@@ -16,7 +16,7 @@ final class MissionInjectorMock: MissionInjectorProtocol {
     var mission: Mission?
     var astronaut: Astronaut?
     
-    func inject(coordinator: MissionCoordinator, in view: AppView) -> AnyView {
+    func inject(coordinator: any Navigation.BaseCoordinatorProtocol, in view: Navigation.AppView) -> AnyView {
         switch view {
         case .missions: injectMissionCallCount += 1
         case .missionDetail(let mission): injectMissionDetailCallCount += 1; self.mission = mission
