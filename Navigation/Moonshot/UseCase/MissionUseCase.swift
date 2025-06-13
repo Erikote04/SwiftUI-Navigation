@@ -1,14 +1,12 @@
 import Foundation
 
-protocol MissionUseCaseProtocol: UseCaseProtocol {
+protocol MissionUseCaseProtocol {
     func getMissions() async throws -> [Mission]
 }
 
 class MissionUseCase: MissionUseCaseProtocol {
     func getMissions() async throws -> [Mission] {
-        return try await withCheckedThrowingContinuation { continuation in
-            let missions: [Mission] = Bundle.main.decode("missions.json")
-            continuation.resume(returning: missions)
-        }
+        let missions: [Mission] = Bundle.main.decode("missions.json")
+        return missions
     }
 }
