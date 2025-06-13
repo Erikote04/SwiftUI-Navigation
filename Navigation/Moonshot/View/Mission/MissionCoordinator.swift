@@ -4,17 +4,9 @@ final class MissionCoordinator: BaseCoordinator {
     
     private let injector: MissionInjectorProtocol
     
-    init(injector: MissionInjectorProtocol) {
+    init(injector: MissionInjectorProtocol = MissionInjector()) {
         self.injector = injector
         super.init()
-    }
-    
-    convenience override init() {
-        let missionUseCase: MissionUseCaseProtocol = UseCaseContainer.shared.getCurrentUseCase()
-        let AstronautUseCase: AstronautUseCaseProtocol = UseCaseContainer.shared.getCurrentUseCase()
-        let injector = MissionInjector(missionUseCase: missionUseCase, astronautUseCase: AstronautUseCase)
-        
-        self.init(injector: injector)
     }
     
     override func canHandle(view: AppView) -> Bool {

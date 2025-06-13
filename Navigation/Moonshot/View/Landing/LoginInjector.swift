@@ -10,7 +10,7 @@ final class LoginInjector: LoginInjectorProtocol {
     
     private let useCase: LoginUseCaseProtocol
     
-    init(useCase: LoginUseCaseProtocol) {
+    init(useCase: LoginUseCaseProtocol = LoginUseCase()) {
         self.useCase = useCase
     }
     

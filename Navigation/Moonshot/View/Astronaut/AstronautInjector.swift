@@ -10,7 +10,7 @@ final class AstronautInjector: AstronautInjectorProtocol {
     
     private let useCase: AstronautUseCaseProtocol
     
-    init(useCase: AstronautUseCaseProtocol) {
+    init(useCase: AstronautUseCaseProtocol = AstronautUseCase()) {
         self.useCase = useCase
     }
     

@@ -4,16 +4,9 @@ final class LoginCoordinator: BaseCoordinator {
     
     private let injector: LoginInjectorProtocol
     
-    init(injector: LoginInjectorProtocol) {
+    init(injector: LoginInjectorProtocol = LoginInjector()) {
         self.injector = injector
         super.init()
-    }
-    
-    convenience override init() {
-        let useCase: LoginUseCaseProtocol = UseCaseContainer.shared.getCurrentUseCase()
-        let injector = LoginInjector(useCase: useCase)
-        
-        self.init(injector: injector)
     }
     
     override func canHandle(view: AppView) -> Bool {

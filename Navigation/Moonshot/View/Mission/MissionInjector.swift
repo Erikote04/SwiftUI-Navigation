@@ -11,7 +11,10 @@ final class MissionInjector: MissionInjectorProtocol {
     private let missionUseCase: MissionUseCaseProtocol
     private let astronautUseCase: AstronautUseCaseProtocol
     
-    init(missionUseCase: MissionUseCaseProtocol, astronautUseCase: AstronautUseCaseProtocol) {
+    init(
+        missionUseCase: MissionUseCaseProtocol = MissionUseCase(),
+        astronautUseCase: AstronautUseCaseProtocol = AstronautUseCase()
+    ) {
         self.missionUseCase = missionUseCase
         self.astronautUseCase = astronautUseCase
     }
