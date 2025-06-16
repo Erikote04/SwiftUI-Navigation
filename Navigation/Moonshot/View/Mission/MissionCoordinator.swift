@@ -17,11 +17,6 @@ final class MissionCoordinator: BaseCoordinator {
     }
     
     @ViewBuilder func build(_ view: AppView) -> some View {
-        switch view {
-        case .missions: injector.inject(coordinator: self, in: view)
-        case .missionDetail(_): injector.inject(coordinator: self, in: view)
-        case .astronautDetail(_): injector.inject(coordinator: self, in: view)
-        default: EmptyView()
-        }
+        injector.inject(coordinator: self, in: view)
     }
 }
